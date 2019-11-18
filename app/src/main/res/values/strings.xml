@@ -8,4 +8,10 @@
     <string name="classname_placeholder">Automata/ Computability</string>
     <string name="class_image">Class Image</string>
     <string name="placeholder_text">Placeholder Text</string>
+    <string name="settings">Settings</string>
+    <string name="image_description">Image Description</string>
+    <string name="title_activity_tabbed">TabbedActivity</string>
+    <string name="tab_text_1">Content</string>
+    <string name="tab_text_2">Web Page</string>
+    <string name="title_activity_detailed_view">DetailedView</string>
 </resources>

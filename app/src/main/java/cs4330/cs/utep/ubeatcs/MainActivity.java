@@ -2,6 +2,7 @@ package cs4330.cs.utep.ubeatcs;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
@@ -47,25 +48,32 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
         });
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(ProgressBar.INVISIBLE);
-        listView = findViewById(R.id.listView1);
+        listView = findViewById(R.id.homeView);
         listView.setOnItemClickListener((parent, view, position, id) -> itemClicked(position));
         FloatingActionButton fab = findViewById(R.id.fab2);
-        fab.setOnClickListener(view -> Snackbar.make(view, "Add a Class", Snackbar.LENGTH_LONG)
+        fab.setOnClickListener(view -> Snackbar.make(view, "Action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show());
         renewList();
     }
 
     private void itemClicked(int position) {
-        Intent i = new Intent(this, ScrollingActivity.class);
-        i.putExtra("title", classList.get(position).getClass_name());
+        Intent i = new Intent(this, DetailedView.class);
+        i.putExtra("class", classList.get(position).getClass_name());
+        i.putExtra("number", classList.get(position).getClass_number());
+        i.putExtra("teacher", classList.get(position).getClass_teacher());
         startActivity(i);
-
     }
 
     private void renewList() {
         ListAdapter listAdapter = new ListAdapter(getBaseContext(), classList);
         listView.setAdapter(listAdapter);
         listView.deferNotifyDataSetChanged();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
