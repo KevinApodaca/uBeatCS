@@ -5,6 +5,7 @@ public class ClassInfo {
     private String class_name;
     private String class_teacher;
     private String class_number;
+    private String class_url;
 
     public ClassInfo(String class_name, String class_teacher, String class_number) {
         this.class_name = class_name;
@@ -35,5 +36,13 @@ public class ClassInfo {
 
     public void setClass_number(String class_number) {
         this.class_number = class_number;
+    }
+
+    public String getClass_url() {
+        return class_url;
+    }
+
+    public void setClass_url(String class_url) {
+        this.class_url = class_url;
     }
 }

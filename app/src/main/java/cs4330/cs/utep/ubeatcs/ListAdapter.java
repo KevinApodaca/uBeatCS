@@ -1,6 +1,8 @@
 package cs4330.cs.utep.ubeatcs;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,19 +10,23 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.view.menu.MenuBuilder;
+import androidx.appcompat.view.menu.MenuPopupHelper;
+import androidx.appcompat.widget.PopupMenu;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ListAdapter extends ArrayAdapter<ClassInfo> {
 
     private final List<ClassInfo> classNameList;
-    private Listener listener;
-
 
     public ListAdapter(Context ctx, List<ClassInfo> className) {
         super(ctx, -1, className);
         this.classNameList = className;
     }
+
 
     @NonNull
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
@@ -41,9 +47,6 @@ public class ListAdapter extends ArrayAdapter<ClassInfo> {
 
         void edit(int index);
 
-        void open(int index, boolean isInternal);
-
-        void refresh(int index);
     }
 }
 

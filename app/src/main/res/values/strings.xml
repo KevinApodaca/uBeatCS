@@ -14,4 +14,9 @@
     <string name="tab_text_1">Content</string>
     <string name="tab_text_2">Web Page</string>
     <string name="title_activity_detailed_view">DetailedView</string>
+    <string name="homepage_url">Homepage URL</string>
+    <string name="teacher_name">Teacher Name</string>
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
 </resources>
