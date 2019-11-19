@@ -19,4 +19,6 @@
     <string name="update">Update</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
+    <string name="class_number">Class Number</string>
+    <string name="class_name">Class Name</string>
 </resources>

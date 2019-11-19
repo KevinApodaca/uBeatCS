@@ -22,8 +22,9 @@ import java.util.Objects;
  */
 public class NewProductDialogActivity extends AppCompatDialogFragment {
 
-    private EditText productName;
-    private EditText productURL;
+    private EditText classNumber;
+    private EditText classUrl;
+    private EditText classNm;
     private NewProductDialogListener listener;
 
     @NonNull
@@ -32,22 +33,24 @@ public class NewProductDialogActivity extends AppCompatDialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = Objects.requireNonNull(getActivity()).getLayoutInflater();
         @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.activity_new_product_dialog, null);
-        productName = view.findViewById(R.id.editNameString);
-        productURL = view.findViewById(R.id.editURLString);
+        classNm = view.findViewById(R.id.editClassNameString);
+        classNumber = view.findViewById(R.id.editNumberString);
+        classUrl = view.findViewById(R.id.editURLString);
         builder.setView(view).setTitle("Adding Class")
                 .setNegativeButton("Cancel", (dialog, which) -> dialog.cancel())
                 .setPositiveButton("OK", (dialog, which) -> {
-                    String name = productName.getText().toString();
-                    String url = productURL.getText().toString().toLowerCase();
-                    if (!url.equals("")) {
-                        listener.addClass(name, url);
+                    String className = classNm.getText().toString();
+                    String number = classNumber.getText().toString();
+                    String url = classUrl.getText().toString().toLowerCase();
+                    if (!url.equals("") && !number.equals("") && !className.equals("")) {
+                        listener.addClass(className, number, url);
                     } else {
                         Toast.makeText(getContext(), "Error while adding a new class.", Toast.LENGTH_SHORT).show();
                     }
                 });
         if (getArguments() != null) {
-            productURL.setText(getArguments().getString("url"));
-        }
+            classUrl.setText(getArguments().getString("url"));
+        }//TODO ADDING CLASS
         return builder.create();
     }
 
@@ -58,6 +61,6 @@ public class NewProductDialogActivity extends AppCompatDialogFragment {
     }
 
     public interface NewProductDialogListener {
-        void addClass(String name, String url);
+        void addClass(String className, String name, String url);
     }
 }

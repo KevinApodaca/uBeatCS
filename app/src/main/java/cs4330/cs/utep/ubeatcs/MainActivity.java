@@ -54,9 +54,27 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
         });
         FloatingActionButton fab = findViewById(R.id.fab2);
         fab.setOnClickListener(view -> toBrowser("https://www.utep.edu/cs/people/index.html"));
+        handleShare(getIntent());
         renewList();
     }
 
+    /**
+     * Handles shared text and opens a new dialog to add the product to the current list.
+     *
+     * @param intent position of the product
+     */
+    private void handleShare(Intent intent) {
+        String action = intent.getAction();
+        String type = intent.getType();
+        if (Intent.ACTION_SEND.equals(action) && type != null) {
+            if ("text/plain".equals(type)) {
+                String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
+                if (sharedText != null) {
+                    openNewProductDialog(sharedText);
+                }
+            }
+        }
+    }
 
     /**
      * Open a chrome custom tab given the product.
@@ -125,6 +143,7 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
         Bundle bundle = new Bundle();
         bundle.putInt("index", index);
         bundle.putString("name", classList.get(index).getClass_name());
+        bundle.putString("number", classList.get(index).getClass_number());
         bundle.putString("url", classList.get(index).getClass_url());
         dialog.setArguments(bundle);
         dialog.show(getSupportFragmentManager(), "Edit Class");
@@ -172,9 +191,31 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
      * @param url
      */
     @Override
-    public void addClass(String name, String url) {
-        classList.add(new ClassInfo(name, url));
-        renewList();
+    public void addClass(String name, String number, String url) {
+        ClassInfo classInfo = new ClassInfo(name, number, url);
+        classList.add(classInfo);
+        getInfo(classList.indexOf(classInfo), true);
+    }
+
+    private void getInfo(int position, boolean isNew) {
+        Thread priceThread = new Thread(() -> {
+            WebScrape webScrape = new WebScrape(classList.get(position).getClass_url());
+            classList.get(position).setClass_teacher(webScrape.getTitle());
+        });
+        priceThread.start();
+        progressBar.setVisibility(ProgressBar.VISIBLE);
+        Thread uiThread = new Thread(() -> {
+            while (true) {
+                if (!priceThread.isAlive()) {
+                    break;
+                }
+            }
+            runOnUiThread(() -> {
+                renewList();
+                progressBar.setVisibility(ProgressBar.INVISIBLE);
+            });
+        });
+        uiThread.start();
     }
 
     /**
@@ -185,7 +226,7 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
      * @param index
      */
     @Override
-    public void updateProduct(String name, String url, int index) {
+    public void update(String name, String number, String url, int index) {
 
     }
 }

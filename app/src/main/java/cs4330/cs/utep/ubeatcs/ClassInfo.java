@@ -22,6 +22,12 @@ public class ClassInfo {
     public ClassInfo() {
     }
 
+    public ClassInfo(String name, String number, String url) {
+        this.class_name = name;
+        this.class_number = number;
+        this.class_url = url;
+    }
+
     public String getClass_name() {
         return class_name;
     }

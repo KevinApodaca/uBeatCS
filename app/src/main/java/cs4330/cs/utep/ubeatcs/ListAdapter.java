@@ -30,13 +30,6 @@ public class ListAdapter extends ArrayAdapter<ClassInfo> {
 
         TextView nameView = row.findViewById(R.id.className);
         TextView teacherNameView = row.findViewById(R.id.classTeacher);
-
-
-        Thread priceThread = new Thread(() -> {
-            WebScrape webScrape = new WebScrape(currentClass.getClass_url());
-            currentClass.setClass_teacher(webScrape.getTitle());
-        });
-        priceThread.start();
         nameView.setText(currentClass.getClass_name());
         teacherNameView.setText(String.format("%s - %s", currentClass.getClass_number(), currentClass.getClass_teacher()));
 
