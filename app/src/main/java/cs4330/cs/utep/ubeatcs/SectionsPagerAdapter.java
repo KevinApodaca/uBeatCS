@@ -1,6 +1,7 @@
 package cs4330.cs.utep.ubeatcs;
 
 import android.content.Context;
+import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -15,20 +16,31 @@ import androidx.fragment.app.FragmentPagerAdapter;
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2};
+    private final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2};
     private final Context mContext;
+    ClassInfo globalClassInfo;
 
-    public SectionsPagerAdapter(Context context, FragmentManager fm) {
+    public SectionsPagerAdapter(Context context, FragmentManager fm, ClassInfo currentClass) {
         super(fm);
         mContext = context;
+        globalClassInfo = currentClass;
     }
 
     @Override
     public Fragment getItem(int position) {
+        Bundle bundle = new Bundle();
+        bundle.putString("name", globalClassInfo.getClass_name());
+        bundle.putString("number", globalClassInfo.getClass_number());
+        bundle.putString("teacher", globalClassInfo.getClass_teacher());
+        bundle.putString("url", globalClassInfo.getClass_url());
         if (position == 0) {
-            return PlaceholderFragment.newInstance(position);
+            PlaceholderFragment placeholderFragment = PlaceholderFragment.newInstance(position);
+            placeholderFragment.setArguments(bundle);
+            return placeholderFragment;
         } else {
-            return PlaceholderFragmentWebsite.newInstance(position);
+            PlaceholderFragmentWebsite placeholderFragmentWebsite = new PlaceholderFragmentWebsite().newInstance();
+            placeholderFragmentWebsite.setArguments(bundle);
+            return placeholderFragmentWebsite;
         }
     }
 

@@ -38,9 +38,9 @@ public class NewProductDialogActivity extends AppCompatDialogFragment {
                 .setNegativeButton("Cancel", (dialog, which) -> dialog.cancel())
                 .setPositiveButton("OK", (dialog, which) -> {
                     String name = productName.getText().toString();
-                    String url = productURL.getText().toString();
-                    if (!name.equals("") && !url.equals("")) {
-                        //TODO Implement method to add classes
+                    String url = productURL.getText().toString().toLowerCase();
+                    if (!url.equals("")) {
+                        listener.addClass(name, url);
                     } else {
                         Toast.makeText(getContext(), "Error while adding a new class.", Toast.LENGTH_SHORT).show();
                     }

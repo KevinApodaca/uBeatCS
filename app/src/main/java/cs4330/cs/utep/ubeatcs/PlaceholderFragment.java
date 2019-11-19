@@ -20,6 +20,7 @@ public class PlaceholderFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
     List<String> subjectList = new ArrayList<>();
     DetailedListAdapter listAdapter;
+    ClassInfo globalClassInfo;
 
     public static PlaceholderFragment newInstance(int index) {
         PlaceholderFragment fragment = new PlaceholderFragment();
@@ -32,6 +33,12 @@ public class PlaceholderFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle bundle = getArguments();
+        globalClassInfo = new ClassInfo();
+        globalClassInfo.setClass_name(bundle.getString("name"));
+        globalClassInfo.setClass_number(bundle.getString("number"));
+        globalClassInfo.setClass_teacher(bundle.getString("teacher"));
+        globalClassInfo.setClass_url(bundle.getString("url"));
         listAdapter = new DetailedListAdapter(getContext(), subjectList);
         subjectList.add("Exam Review");
         subjectList.add("Previous Exam");

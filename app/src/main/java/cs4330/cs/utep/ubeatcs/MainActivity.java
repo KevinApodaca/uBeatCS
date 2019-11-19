@@ -2,6 +2,7 @@ package cs4330.cs.utep.ubeatcs;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -15,6 +16,7 @@ import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.view.menu.MenuPopupHelper;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
+import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -36,16 +38,6 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ClassInfo defaultClass1 = new ClassInfo("Automata / Computability", "Kreinovich", "CS3350");
-        ClassInfo defaultClass2 = new ClassInfo("Advanced Object Oriented Programming", "Cheon", "CS3331");
-        ClassInfo defaultClass3 = new ClassInfo("Database Management", "Villanueva", "CS4342");
-        ClassInfo defaultClass4 = new ClassInfo("Computer Architecture", "Freudenthal", "CS3432");
-        ClassInfo defaultClass5 = new ClassInfo("Data Mining", "Hossain", "CS4362");
-        classList.add(defaultClass1);
-        classList.add(defaultClass2);
-        classList.add(defaultClass3);
-        classList.add(defaultClass4);
-        classList.add(defaultClass5);
         swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
         swipeRefreshLayout.setOnRefreshListener(() -> {
@@ -61,8 +53,21 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
             return true;
         });
         FloatingActionButton fab = findViewById(R.id.fab2);
-        fab.setOnClickListener(view -> openNewProductDialog(null));
+        fab.setOnClickListener(view -> toBrowser("https://www.utep.edu/cs/people/index.html"));
         renewList();
+    }
+
+
+    /**
+     * Open a chrome custom tab given the product.
+     *
+     * @param url product's url
+     */
+    public void toBrowser(String url) {
+        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+        builder.addDefaultShareMenuItem();
+        CustomTabsIntent customTabsIntent = builder.build();
+        customTabsIntent.launchUrl(this, Uri.parse(url));
     }
 
     /**
@@ -97,7 +102,8 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
 
     private void itemClicked(int position) {
         Intent i = new Intent(this, DetailedView.class);
-        i.putExtra("class", classList.get(position).getClass_name());
+        i.putExtra("name", classList.get(position).getClass_name());
+        i.putExtra("url", classList.get(position).getClass_url());
         i.putExtra("number", classList.get(position).getClass_number());
         i.putExtra("teacher", classList.get(position).getClass_teacher());
         startActivity(i);
@@ -133,10 +139,11 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
         NewProductDialogActivity dialog = new NewProductDialogActivity();
         if (sharedText != null) {
             Bundle bundle = new Bundle();
+            bundle.putString("name", sharedText);
             bundle.putString("url", sharedText);
             dialog.setArguments(bundle);
         }
-        dialog.show(getSupportFragmentManager(), "New item added");
+        dialog.show(getSupportFragmentManager(), "New Class Added");
     }
 
     @Override
@@ -166,7 +173,8 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
      */
     @Override
     public void addClass(String name, String url) {
-
+        classList.add(new ClassInfo(name, url));
+        renewList();
     }
 
     /**

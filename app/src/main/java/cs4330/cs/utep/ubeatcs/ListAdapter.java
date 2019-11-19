@@ -1,8 +1,6 @@
 package cs4330.cs.utep.ubeatcs;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,13 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.view.menu.MenuBuilder;
-import androidx.appcompat.view.menu.MenuPopupHelper;
-import androidx.appcompat.widget.PopupMenu;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.List;
-import java.util.Objects;
 
 public class ListAdapter extends ArrayAdapter<ClassInfo> {
 
@@ -34,10 +27,19 @@ public class ListAdapter extends ArrayAdapter<ClassInfo> {
                 : LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.class_view_item, parent, false);
         ClassInfo currentClass = classNameList.get(position);
+
         TextView nameView = row.findViewById(R.id.className);
-        nameView.setText(currentClass.getClass_name());
         TextView teacherNameView = row.findViewById(R.id.classTeacher);
+
+
+        Thread priceThread = new Thread(() -> {
+            WebScrape webScrape = new WebScrape(currentClass.getClass_url());
+            currentClass.setClass_teacher(webScrape.getTitle());
+        });
+        priceThread.start();
+        nameView.setText(currentClass.getClass_name());
         teacherNameView.setText(String.format("%s - %s", currentClass.getClass_number(), currentClass.getClass_teacher()));
+
         return row;
     }
 

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -14,7 +15,9 @@ import androidx.fragment.app.Fragment;
  */
 public class PlaceholderFragmentWebsite extends Fragment {
 
-    public static PlaceholderFragmentWebsite newInstance(int index) {
+    ClassInfo globalClassInfo = new ClassInfo();
+
+    public static PlaceholderFragmentWebsite newInstance() {
         PlaceholderFragmentWebsite fragment = new PlaceholderFragmentWebsite();
         Bundle bundle = new Bundle();
         fragment.setArguments(bundle);
@@ -23,6 +26,13 @@ public class PlaceholderFragmentWebsite extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        if (getArguments() != null) {
+            Bundle bundle = getArguments();
+            globalClassInfo.setClass_name(bundle.getString("name"));
+            globalClassInfo.setClass_number(bundle.getString("number"));
+            globalClassInfo.setClass_teacher(bundle.getString("teacher"));
+            globalClassInfo.setClass_url(bundle.getString("url"));
+        }
         super.onCreate(savedInstanceState);
     }
 
@@ -32,11 +42,17 @@ public class PlaceholderFragmentWebsite extends Fragment {
             Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_webview, container, false);
         WebView webView = root.findViewById(R.id.webView);
-        String customHtml = "<html><body><h1>Hello, uBeatCS </h1>" +
-                "<h1>Heading 1</h1><h2>Heading 2</h2><h3>Heading 3</h3>" +
-                "<p>This is a sample paragraph of static HTML In Web view</p>" +
-                "</body></html>";
-        webView.loadData(customHtml, "text/html", "UTF-8");
+        webView.setWebViewClient(new WebViewController());
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.loadUrl(globalClassInfo.getClass_url());
         return root;
+    }
+
+    public class WebViewController extends WebViewClient {
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            view.loadUrl(url);
+            return true;
+        }
     }
 }
