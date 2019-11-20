@@ -6,17 +6,14 @@ public class ClassInfo {
     private String class_teacher;
     private String class_number;
     private String class_url;
+    private String class_email;
 
-    public ClassInfo(String class_name, String class_teacher, String class_number, String class_url) {
+    public ClassInfo(String class_name, String class_teacher, String class_number, String class_url, String class_email) {
         this.class_name = class_name;
         this.class_teacher = class_teacher;
         this.class_number = class_number;
         this.class_url = class_url;
-    }
-
-    public ClassInfo(String name, String url) {
-        this.class_name = name;
-        this.class_url = url;
+        this.class_email = class_email;
     }
 
     public ClassInfo() {
@@ -58,5 +55,13 @@ public class ClassInfo {
 
     public void setClass_url(String class_url) {
         this.class_url = class_url;
+    }
+
+    public String getClass_email() {
+        return class_email;
+    }
+
+    public void setClass_email(String class_email) {
+        this.class_email = class_email;
     }
 }

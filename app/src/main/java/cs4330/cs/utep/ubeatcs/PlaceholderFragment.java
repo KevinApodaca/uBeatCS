@@ -41,6 +41,7 @@ public class PlaceholderFragment extends Fragment implements DetailedListAdapter
         globalClassInfo.setClass_number(bundle.getString("number"));
         globalClassInfo.setClass_teacher(bundle.getString("teacher"));
         globalClassInfo.setClass_url(bundle.getString("url"));
+        globalClassInfo.setClass_email(bundle.getString("email"));
         listAdapter = new DetailedListAdapter(getContext(), subjectList);
         subjectList.add("Exam Review");
         subjectList.add("Previous Exam");

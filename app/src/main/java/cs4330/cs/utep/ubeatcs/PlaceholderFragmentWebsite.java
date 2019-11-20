@@ -32,6 +32,7 @@ public class PlaceholderFragmentWebsite extends Fragment {
             globalClassInfo.setClass_number(bundle.getString("number"));
             globalClassInfo.setClass_teacher(bundle.getString("teacher"));
             globalClassInfo.setClass_url(bundle.getString("url"));
+            globalClassInfo.setClass_email(bundle.getString("email"));
         }
         super.onCreate(savedInstanceState);
     }

@@ -33,12 +33,14 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         bundle.putString("number", globalClassInfo.getClass_number());
         bundle.putString("teacher", globalClassInfo.getClass_teacher());
         bundle.putString("url", globalClassInfo.getClass_url());
+        bundle.putString("email", globalClassInfo.getClass_email());
         if (position == 0) {
             PlaceholderFragment placeholderFragment = PlaceholderFragment.newInstance(position);
             placeholderFragment.setArguments(bundle);
             return placeholderFragment;
         } else {
-            PlaceholderFragmentWebsite placeholderFragmentWebsite = new PlaceholderFragmentWebsite().newInstance();
+            new PlaceholderFragmentWebsite();
+            PlaceholderFragmentWebsite placeholderFragmentWebsite = PlaceholderFragmentWebsite.newInstance();
             placeholderFragmentWebsite.setArguments(bundle);
             return placeholderFragmentWebsite;
         }

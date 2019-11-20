@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
         classInfo.setClass_url("http://www.cs.utep.edu/cheon/");
         classInfo.setClass_number("CS4330");
         classInfo.setClass_name("Mobile Apps");
+        classInfo.setClass_email("ycheon@utep.edu");
         classList.add(classInfo);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -130,6 +131,7 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
         i.putExtra("url", classList.get(position).getClass_url());
         i.putExtra("number", classList.get(position).getClass_number());
         i.putExtra("teacher", classList.get(position).getClass_teacher());
+        i.putExtra("email", classList.get(position).getClass_email());
         startActivity(i);
     }
 

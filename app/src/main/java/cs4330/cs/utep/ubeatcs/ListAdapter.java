@@ -32,10 +32,12 @@ public class ListAdapter extends ArrayAdapter<ClassInfo> {
         String toCompare = urlSplit[urlSplit.length - 1];
         TextView nameView = row.findViewById(R.id.className);
         TextView teacherNameView = row.findViewById(R.id.classTeacher);
+//        TextView emailView = row.findViewById(R.id.classEmail);
+//        emailView.setText(currentClass.getClass_email());
         nameView.setText(currentClass.getClass_name());
         teacherNameView.setText(String.format("%s - %s", currentClass.getClass_number(), currentClass.getClass_teacher()));
         ImageView imageView = row.findViewById(R.id.imageView);
-        if (toCompare.contains("ann")) {
+        if (toCompare.contains("gates")) {
             imageView.setImageResource(R.drawable.anngates);
         }
         if (toCompare.contains("chris")) {
