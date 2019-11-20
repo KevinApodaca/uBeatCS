@@ -42,7 +42,7 @@ public class EmailDialogActivity extends AppCompatDialogFragment {
         sendTo = view.findViewById(R.id.sendToString);
         subject = view.findViewById(R.id.subjectString);
         body = view.findViewById(R.id.bodyString);
-        builder.setView(view).setTitle("Edit Class")
+        builder.setView(view).setTitle("Send Email To")
                 .setNegativeButton("Cancel", (dialog, which) -> dialog.cancel())
                 .setPositiveButton("Ok", (dialog, which) -> {
                     String email = sendTo.getText().toString();

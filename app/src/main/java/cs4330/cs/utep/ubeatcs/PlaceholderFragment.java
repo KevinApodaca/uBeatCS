@@ -1,12 +1,15 @@
 package cs4330.cs.utep.ubeatcs;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
@@ -44,12 +47,11 @@ public class PlaceholderFragment extends Fragment implements DetailedListAdapter
         globalClassInfo.setClass_email(bundle.getString("email"));
         listAdapter = new DetailedListAdapter(getContext(), subjectList);
         subjectList.add("Exam Review");
-        subjectList.add("Previous Exam");
-        subjectList.add("Online Tutorial");
-        subjectList.add("Lecture Note");
+        subjectList.add("Tutorials");
+        subjectList.add("Lecture Notes");
         subjectList.add("Image Notes");
-        subjectList.add("Example Test");
-        subjectList.add("Example Quizzes");
+        subjectList.add("Example Test/Quizzes");
+        subjectList.add("Homework");
     }
 
     @Override
@@ -63,9 +65,32 @@ public class PlaceholderFragment extends Fragment implements DetailedListAdapter
 
     @Override
     public void doAction(int position) {
-        if (position == 4) {
-            Intent i = new Intent(getContext(), TakePictureActivity.class);
-            startActivity(i);
+        Log.e("Position", String.valueOf(position));
+        switch (position) {
+            case 0:
+                toBrowser("http://www.cs.utep.edu/cheon/cs4330/index.php?page=exams");
+                break;
+            case 1:
+                break;
+            case 2:
+                toBrowser("http://www.cs.utep.edu/cheon/cs4330/index.php?page=notes");
+                break;
+            case 3:
+                Intent i = new Intent(getContext(), TakePictureActivity.class);
+                startActivity(i);
+                break;
+            case 4:
+                break;
+            case 5:
+                toBrowser("http://www.cs.utep.edu/cheon/cs4330/index.php?page=homework");
+                break;
         }
+    }
+
+    public void toBrowser(String url) {
+        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+        builder.addDefaultShareMenuItem();
+        CustomTabsIntent customTabsIntent = builder.build();
+        customTabsIntent.launchUrl(getContext(), Uri.parse(url));
     }
 }

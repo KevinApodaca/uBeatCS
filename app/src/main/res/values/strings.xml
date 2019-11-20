@@ -26,4 +26,5 @@
     <string name="save">Save</string>
     <string name="capture">Capture</string>
     <string name="captured_image">Captured Image</string>
+    <string name="example_content">Example Content</string>
 </resources>

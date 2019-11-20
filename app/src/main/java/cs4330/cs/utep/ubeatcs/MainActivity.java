@@ -2,6 +2,7 @@ package cs4330.cs.utep.ubeatcs;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,8 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.menu.MenuBuilder;
@@ -63,7 +66,16 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
             return true;
         });
         FloatingActionButton fab = findViewById(R.id.fab2);
-        fab.setOnClickListener(view -> toBrowser("https://www.utep.edu/cs/people/index.html"));
+        fab.setOnClickListener(view -> {
+            Toast toast = Toast.makeText(getApplicationContext(), "Select a Professor's Class Homepage", Toast.LENGTH_LONG); // initiate the Toast with context, message and duration for the Toast
+            toast.setGravity(Gravity.TOP, 0, 0);
+            View view2 = toast.getView();
+            view2.setBackgroundColor(Color.rgb(2, 136, 209));
+            TextView text = view2.findViewById(android.R.id.message);
+            text.setTextColor(Color.rgb(33, 33, 33));
+            toast.show();
+            toBrowser("https://www.utep.edu/cs/people/index.html");
+        });
         handleShare(getIntent());
         renewList();
     }
@@ -212,7 +224,6 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
         Thread thread = new Thread(() -> {
             WebScrape webScrape = new WebScrape(classList.get(position).getClass_url());
             classList.get(position).setClass_teacher(webScrape.getName());
-            webScrape.getInfo("https://www.utep.edu/cs/people/index.html");
         });
         thread.start();
         progressBar.setVisibility(ProgressBar.VISIBLE);
