@@ -1,6 +1,7 @@
 package cs4330.cs.utep.ubeatcs;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,7 @@ public class ListAdapter extends ArrayAdapter<ClassInfo> {
         ImageView imageView = row.findViewById(R.id.imageView);
         String[] urlSplit = currentClass.getClass_url().split("/");
         String toCompare = urlSplit[urlSplit.length - 1];
+        Log.e("toCompare", toCompare);
         if (toCompare.contains("gates")) {
             imageView.setImageResource(R.drawable.anngates);
             classNameList.get(position).setClass_email("agates@utep.edu");
@@ -84,7 +86,7 @@ public class ListAdapter extends ArrayAdapter<ClassInfo> {
             imageView.setImageResource(R.drawable.mahmudhossain);
             classNameList.get(position).setClass_email("mhossain@utep.edu");
         }
-        if (toCompare.contains("kreinovich")) {
+        if (toCompare.contains("vladik")) {
             imageView.setImageResource(R.drawable.vladlik);
             classNameList.get(position).setClass_email("vladik@utep.edu");
         }
@@ -92,11 +94,11 @@ public class ListAdapter extends ArrayAdapter<ClassInfo> {
             imageView.setImageResource(R.drawable.deepaktosh);
             classNameList.get(position).setClass_email("dktosh@utep.edu");
         }
-        if (toCompare.contains("villanueva")) {
+        if (toCompare.contains("rosales")) {
             imageView.setImageResource(R.drawable.nataliavillanueva);
             classNameList.get(position).setClass_email("nvillanuevarosales@utep.edu");
         }
-        if (toCompare.contains("ward")) {
+        if (toCompare.contains("nigel")) {
             imageView.setImageResource(R.drawable.nigelward);
             classNameList.get(position).setClass_email("nigel@utep.edu");
         }

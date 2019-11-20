@@ -80,6 +80,9 @@ public class PlaceholderFragment extends Fragment implements DetailedListAdapter
                 startActivity(i);
                 break;
             case 4:
+                Intent intent = new Intent(getContext(), PDFViewer.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                startActivity(intent);
                 break;
             case 5:
                 toBrowser("http://www.cs.utep.edu/cheon/cs4330/index.php?page=homework");
