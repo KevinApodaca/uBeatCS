@@ -45,7 +45,7 @@ public class NewProductDialogActivity extends AppCompatDialogFragment {
                     if (!url.equals("") && !number.equals("") && !className.equals("")) {
                         listener.addClass(className, number, url);
                     } else {
-                        Toast.makeText(getContext(), "Error while adding a new class.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Error trying to add new course.", Toast.LENGTH_SHORT).show();
                     }
                 });
         if (getArguments() != null) {

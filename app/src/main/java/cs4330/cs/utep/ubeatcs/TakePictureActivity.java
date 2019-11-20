@@ -71,13 +71,19 @@ public class TakePictureActivity extends AppCompatActivity {
             }
         }
     }
-
+/**
+ * Method will generate the image that the user has taken.
+ * TODO implement storage and uploading of the image to the server.
+ * @return the image.
+ * @throws IOException
+ */
     private File createImageFile() throws IOException {
         @SuppressLint("SimpleDateFormat") String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(imageFileName, ".png", storageDir
-        );
+        File image = File.createTempFile(imageFileName, ".png", storageDir);
+        
         currentPhotoPath = image.getAbsolutePath();
         return image;
     }

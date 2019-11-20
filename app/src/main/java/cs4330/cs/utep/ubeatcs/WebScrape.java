@@ -8,6 +8,11 @@ import org.jsoup.nodes.Document;
 
 import java.io.IOException;
 
+/**
+ * Class scrapes the web using JSoup and is used for scraping the image of the instructor, along with their email, as well as letting the user select which teacher's course to load.
+ *
+ * @author Kevin Apodaca
+ */
 public class WebScrape {
 
     String url;
@@ -26,12 +31,9 @@ public class WebScrape {
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        Log.e("Output", output);
     }
 
     public String getName() {
-//        String[] urlSplit = url.split("/");
-//        String toCompare = urlSplit[urlSplit.length - 1];
         String name = null;
         Document doc;
         try {
