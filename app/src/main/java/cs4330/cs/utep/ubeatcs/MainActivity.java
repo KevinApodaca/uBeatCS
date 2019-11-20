@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
         classInfo.setClass_teacher("Yoonsik Cheon");
         classInfo.setClass_url("http://www.cs.utep.edu/cheon/");
         classInfo.setClass_number("CS4330");
-        classInfo.setClass_name("Mobile Apps");
+        classInfo.setClass_name("Mobile Application Development");
         classInfo.setClass_email("ycheon@utep.edu");
         classList.add(classInfo);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
         });
         FloatingActionButton fab = findViewById(R.id.fab2);
         fab.setOnClickListener(view -> {
-            Toast toast = Toast.makeText(getApplicationContext(), "Select a Professor's Class Homepage", Toast.LENGTH_LONG); // initiate the Toast with context, message and duration for the Toast
+            Toast toast = Toast.makeText(getApplicationContext(), "Select a professor's course homepage", Toast.LENGTH_LONG); // initiate the Toast with context, message and duration for the Toast
             toast.setGravity(Gravity.TOP, 0, 0);
             View view2 = toast.getView();
             view2.setBackgroundColor(Color.rgb(2, 136, 209));
@@ -185,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
             bundle.putString("url", sharedText);
             dialog.setArguments(bundle);
         }
-        dialog.show(getSupportFragmentManager(), "New Class Added");
+        dialog.show(getSupportFragmentManager(), "New Course Added");
     }
 
     @Override
