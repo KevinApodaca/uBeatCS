@@ -198,15 +198,15 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
     }
 
     private void getInfo(int position, boolean isNew) {
-        Thread priceThread = new Thread(() -> {
+        Thread thread = new Thread(() -> {
             WebScrape webScrape = new WebScrape(classList.get(position).getClass_url());
             classList.get(position).setClass_teacher(webScrape.getTitle());
         });
-        priceThread.start();
+        thread.start();
         progressBar.setVisibility(ProgressBar.VISIBLE);
         Thread uiThread = new Thread(() -> {
             while (true) {
-                if (!priceThread.isAlive()) {
+                if (!thread.isAlive()) {
                     break;
                 }
             }
