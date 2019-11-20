@@ -25,9 +25,7 @@ public class DetailedTabbedView extends AppCompatActivity {
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(view -> {
-            sendEmailDialog();
-        });
+        fab.setOnClickListener(view -> sendEmailDialog());
     }
 
     private void sendEmailDialog() {

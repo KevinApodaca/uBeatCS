@@ -28,13 +28,14 @@ public class ListAdapter extends ArrayAdapter<ClassInfo> {
                 : LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.class_view_item, parent, false);
         ClassInfo currentClass = classNameList.get(position);
-        String[] urlSplit = currentClass.getClass_url().split("/");
-        String toCompare = urlSplit[urlSplit.length - 1];
+
         TextView nameView = row.findViewById(R.id.className);
         TextView teacherNameView = row.findViewById(R.id.classTeacher);
         nameView.setText(currentClass.getClass_name());
         teacherNameView.setText(String.format("%s - %s", currentClass.getClass_number(), currentClass.getClass_teacher()));
         ImageView imageView = row.findViewById(R.id.imageView);
+        String[] urlSplit = currentClass.getClass_url().split("/");
+        String toCompare = urlSplit[urlSplit.length - 1];
         if (toCompare.contains("gates")) {
             imageView.setImageResource(R.drawable.anngates);
             classNameList.get(position).setClass_email("agates@utep.edu");
@@ -67,7 +68,7 @@ public class ListAdapter extends ArrayAdapter<ClassInfo> {
             imageView.setImageResource(R.drawable.badreddin);
             classNameList.get(position).setClass_email("obbadreddin@utep.edu");
         }
-        if (toCompare.contains("eric")) {
+        if (toCompare.contains("freudenthal")) {
             imageView.setImageResource(R.drawable.ericfreudenthal);
             classNameList.get(position).setClass_email("efreudenthal@utep.edu");
         }
