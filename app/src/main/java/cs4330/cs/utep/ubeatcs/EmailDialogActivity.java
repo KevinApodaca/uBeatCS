@@ -2,7 +2,6 @@ package cs4330.cs.utep.ubeatcs;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;

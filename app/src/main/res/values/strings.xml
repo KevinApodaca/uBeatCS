@@ -27,4 +27,7 @@
     <string name="capture">Capture</string>
     <string name="captured_image">Captured Image</string>
     <string name="example_content">Example Content</string>
+    <string name="player_error">Error initializing YouTube player: %s</string>
+    <string name="seek_to">Jump To</string>
+    <string name="seek_to_hint">Seconds</string>
 </resources>

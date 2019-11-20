@@ -71,6 +71,8 @@ public class PlaceholderFragment extends Fragment implements DetailedListAdapter
                 toBrowser("http://www.cs.utep.edu/cheon/cs4330/index.php?page=exams");
                 break;
             case 1:
+                Intent youtubeIntent = new Intent(getContext(), YoutubeViewer.class);
+                startActivity(youtubeIntent);
                 break;
             case 2:
                 toBrowser("http://www.cs.utep.edu/cheon/cs4330/index.php?page=notes");

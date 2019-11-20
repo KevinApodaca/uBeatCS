@@ -22,13 +22,14 @@ public class ListAdapter extends ArrayAdapter<ClassInfo> {
         this.classNameList = className;
     }
 
-/**
- * Method will be used to set the email of the instructor depending on which teacher has been selected by the user.
- * @param position - current position in the list.
- * @param convertView - the converted view.
- * @param parent - the parent view group.
- * @return the emails of the instructors.
- */
+    /**
+     * Method will be used to set the email of the instructor depending on which teacher has been selected by the user.
+     *
+     * @param position    - current position in the list.
+     * @param convertView - the converted view.
+     * @param parent      - the parent view group.
+     * @return the emails of the instructors.
+     */
     @NonNull
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         View row = convertView != null ? convertView
@@ -43,16 +44,12 @@ public class ListAdapter extends ArrayAdapter<ClassInfo> {
         ImageView imageView = row.findViewById(R.id.imageView);
         String[] urlSplit = currentClass.getClass_url().split("/");
         String toCompare = urlSplit[urlSplit.length - 1];
-<<<<<<< HEAD
         Log.e("toCompare", toCompare);
-=======
-
->>>>>>> 07fc6fd544f05e868743e73db38abafa0d7a5ebc
         if (toCompare.contains("gates")) {
             imageView.setImageResource(R.drawable.anngates);
             classNameList.get(position).setClass_email("agates@utep.edu");
         }
-        
+
         if (toCompare.contains("kiekintveld")) {
             imageView.setImageResource(R.drawable.chriskiekintveld);
             classNameList.get(position).setClass_email("cdkiekintveld@utep.edu");
@@ -107,12 +104,8 @@ public class ListAdapter extends ArrayAdapter<ClassInfo> {
             imageView.setImageResource(R.drawable.mahmudhossain);
             classNameList.get(position).setClass_email("mhossain@utep.edu");
         }
-<<<<<<< HEAD
-        if (toCompare.contains("vladik")) {
-=======
 
         if (toCompare.contains("kreinovich")) {
->>>>>>> 07fc6fd544f05e868743e73db38abafa0d7a5ebc
             imageView.setImageResource(R.drawable.vladlik);
             classNameList.get(position).setClass_email("vladik@utep.edu");
         }
@@ -121,21 +114,17 @@ public class ListAdapter extends ArrayAdapter<ClassInfo> {
             imageView.setImageResource(R.drawable.deepaktosh);
             classNameList.get(position).setClass_email("dktosh@utep.edu");
         }
-<<<<<<< HEAD
         if (toCompare.contains("rosales")) {
             imageView.setImageResource(R.drawable.nataliavillanueva);
             classNameList.get(position).setClass_email("nvillanuevarosales@utep.edu");
         }
-        if (toCompare.contains("nigel")) {
-=======
 
         if (toCompare.contains("villanueva")) {
             imageView.setImageResource(R.drawable.nataliavillanueva);
             classNameList.get(position).setClass_email("nvillanuevarosales@utep.edu");
         }
 
-        if (toCompare.contains("ward")) {
->>>>>>> 07fc6fd544f05e868743e73db38abafa0d7a5ebc
+        if (toCompare.contains("nigel")) {
             imageView.setImageResource(R.drawable.nigelward);
             classNameList.get(position).setClass_email("nigel@utep.edu");
         }
@@ -143,6 +132,8 @@ public class ListAdapter extends ArrayAdapter<ClassInfo> {
         TextView emailView = row.findViewById(R.id.classEmail);
         emailView.setText(currentClass.getClass_email());
         return row;
+
+
     }
 
     public interface Listener {
@@ -153,4 +144,3 @@ public class ListAdapter extends ArrayAdapter<ClassInfo> {
 
     }
 }
-

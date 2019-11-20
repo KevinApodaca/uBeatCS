@@ -36,4 +36,5 @@ dependencies {
     implementation 'org.jsoup:jsoup:1.11.3'
     implementation 'androidx.browser:browser:1.0.0'
     implementation 'com.github.barteksc:android-pdf-viewer:3.2.0-beta.1'
+    compile files('YouTubeAndroidPlayerApi.jar')
 }

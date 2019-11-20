@@ -47,14 +47,12 @@ public class PDFViewer extends AppCompatActivity implements OnPageChangeListener
     void pickFile() {
         int permissionCheck = ContextCompat.checkSelfPermission(this,
                 READ_EXTERNAL_STORAGE);
-
         if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(
                     this,
                     new String[]{READ_EXTERNAL_STORAGE},
                     PERMISSION_CODE
             );
-
             return;
         }
 
@@ -83,7 +81,6 @@ public class PDFViewer extends AppCompatActivity implements OnPageChangeListener
 
     private void displayFromAsset(String assetFileName) {
         pdfFileName = assetFileName;
-
         pdfView.fromAsset(SAMPLE_FILE)
                 .defaultPage(pageNumber)
                 .onPageChange(this)
