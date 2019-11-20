@@ -24,7 +24,6 @@ public class TakePictureActivity extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     private String currentPhotoPath;
     private ImageView takePictureImageView;
-    private Button takePictureButton;
 
     private View.OnClickListener capture = view -> {
         if (getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
@@ -50,7 +49,7 @@ public class TakePictureActivity extends AppCompatActivity {
             File photoFile = null;
             try {
                 photoFile = createImageFile();
-            } catch (IOException ex) {
+            } catch (IOException ignored) {
             }
             if (photoFile != null) {
                 Uri photoURI = FileProvider.getUriForFile(this,
@@ -74,10 +73,6 @@ public class TakePictureActivity extends AppCompatActivity {
 
     /**
      * Method will generate the image that the user has taken.
-     * TODO implement storage and uploading of the image to the server.
-     *
-     * @return the image.
-     * @throws IOException
      */
     private File createImageFile() throws IOException {
         @SuppressLint("SimpleDateFormat") String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());

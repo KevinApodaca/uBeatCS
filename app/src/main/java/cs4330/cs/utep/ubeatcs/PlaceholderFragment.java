@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -22,12 +23,10 @@ public class PlaceholderFragment extends Fragment implements DetailedListAdapter
 
 
     private static final String ARG_SECTION_NUMBER = "section_number";
-    private ListView listView;
     private List<String> subjectList = new ArrayList<>();
     private DetailedListAdapter listAdapter;
-    private ClassInfo globalClassInfo;
 
-    public static PlaceholderFragment newInstance(int index) {
+    static PlaceholderFragment newInstance(int index) {
         PlaceholderFragment fragment = new PlaceholderFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(ARG_SECTION_NUMBER, index);
@@ -39,7 +38,8 @@ public class PlaceholderFragment extends Fragment implements DetailedListAdapter
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle bundle = getArguments();
-        globalClassInfo = new ClassInfo();
+        ClassInfo globalClassInfo = new ClassInfo();
+        assert bundle != null;
         globalClassInfo.setClass_name(bundle.getString("name"));
         globalClassInfo.setClass_number(bundle.getString("number"));
         globalClassInfo.setClass_teacher(bundle.getString("teacher"));
@@ -57,7 +57,7 @@ public class PlaceholderFragment extends Fragment implements DetailedListAdapter
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_detailed_view, container, false);
-        listView = root.findViewById(R.id.listViewDetailed);
+        ListView listView = root.findViewById(R.id.listViewDetailed);
         listView.setOnItemClickListener((parent, view, position, id) -> doAction(position));
         listView.setAdapter(listAdapter);
         return root;
@@ -92,10 +92,10 @@ public class PlaceholderFragment extends Fragment implements DetailedListAdapter
         }
     }
 
-    public void toBrowser(String url) {
+    private void toBrowser(String url) {
         CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
         builder.addDefaultShareMenuItem();
         CustomTabsIntent customTabsIntent = builder.build();
-        customTabsIntent.launchUrl(getContext(), Uri.parse(url));
+        customTabsIntent.launchUrl(Objects.requireNonNull(getContext()), Uri.parse(url));
     }
 }

@@ -15,11 +15,6 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 import java.util.Objects;
 
-/**
- * This class is used to display a dialog window that allows the user to edit an product.
- *
- * @author Isaias Leos
- */
 public class EmailDialogActivity extends AppCompatDialogFragment {
 
     private EditText sendTo;
@@ -27,7 +22,7 @@ public class EmailDialogActivity extends AppCompatDialogFragment {
     private EditText subject;
 
     /**
-     * Creates a custom Dialog Window.
+     * Creates a custom dialog for sending an email.
      *
      * @param saveInstanceState last instance saved
      * @return instance to be displayed by the activity

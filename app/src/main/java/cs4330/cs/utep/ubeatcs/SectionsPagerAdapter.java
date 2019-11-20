@@ -18,9 +18,9 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @StringRes
     private final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2};
     private final Context mContext;
-    ClassInfo globalClassInfo;
+    private ClassInfo globalClassInfo;
 
-    public SectionsPagerAdapter(Context context, FragmentManager fm, ClassInfo currentClass) {
+    SectionsPagerAdapter(Context context, FragmentManager fm, ClassInfo currentClass) {
         super(fm);
         mContext = context;
         globalClassInfo = currentClass;

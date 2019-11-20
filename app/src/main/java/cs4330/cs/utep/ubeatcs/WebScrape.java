@@ -15,9 +15,9 @@ import java.io.IOException;
  */
 public class WebScrape {
 
-    String url;
+    private String url;
 
-    public WebScrape(String url) {
+    WebScrape(String url) {
         this.url = url;
     }
 
@@ -48,9 +48,11 @@ public class WebScrape {
             e.printStackTrace();
         }
         if (!url.contains("gates")) {
+            assert name != null;
             String[] fixedName = name.split(" ");
             name = fixedName[0] + " " + fixedName[1];
         }
+        assert name != null;
         Log.e("Teacher", name);
         return name;
     }

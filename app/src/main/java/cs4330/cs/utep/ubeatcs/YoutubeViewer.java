@@ -12,11 +12,6 @@ import com.google.android.youtube.player.YouTubePlayer.Provider;
 import com.google.android.youtube.player.YouTubePlayerView;
 
 
-/**
- * Created by echessa on 1/13/17.
- */
-
-
 public class YoutubeViewer extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
 
     private static final int RECOVERY_REQUEST = 1;
@@ -60,7 +55,7 @@ public class YoutubeViewer extends YouTubeBaseActivity implements YouTubePlayer.
     }
 
     public final class Config {
-        public static final String YOUTUBE_API_KEY = "AIzaSyAoXzjItmyCNqDipAOGjqGRuw5u9nZh_Q8";
+        static final String YOUTUBE_API_KEY = "AIzaSyAoXzjItmyCNqDipAOGjqGRuw5u9nZh_Q8";
 
         private Config() {
         }

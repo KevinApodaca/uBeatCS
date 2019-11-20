@@ -17,7 +17,7 @@ public class ListAdapter extends ArrayAdapter<ClassInfo> {
 
     private final List<ClassInfo> classNameList;
 
-    public ListAdapter(Context ctx, List<ClassInfo> className) {
+    ListAdapter(Context ctx, List<ClassInfo> className) {
         super(ctx, -1, className);
         this.classNameList = className;
     }

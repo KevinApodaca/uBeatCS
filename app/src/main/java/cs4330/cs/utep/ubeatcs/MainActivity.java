@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
      * @param position The position of the clicked product in the list.
      */
     @SuppressLint("RestrictedApi")
-    private boolean createPopup(View view, int position) {
+    private void createPopup(View view, int position) {
         PopupMenu menu = new PopupMenu(this, view);
         menu.inflate(R.menu.menu_popup);
         menu.setOnMenuItemClickListener(item -> {
@@ -137,7 +137,6 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
         menuHelper.setForceShowIcon(true);
         menuHelper.setGravity(Gravity.END);
         menuHelper.show();
-        return false;
     }
 
     private void itemClicked(int position) {
@@ -209,9 +208,6 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
 
     /**
      * Method to add class to current list.
-     *
-     * @param name
-     * @param url
      */
     @Override
     public void addClass(String name, String number, String url) {
@@ -243,10 +239,6 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
 
     /**
      * Method to edit class from the list.
-     *
-     * @param name
-     * @param url
-     * @param index
      */
     @Override
     public void update(String name, String number, String url, int index) {

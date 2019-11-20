@@ -1,5 +1,6 @@
 package cs4330.cs.utep.ubeatcs;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,9 +16,9 @@ import androidx.fragment.app.Fragment;
  */
 public class PlaceholderFragmentWebsite extends Fragment {
 
-    ClassInfo globalClassInfo = new ClassInfo();
+    private ClassInfo globalClassInfo = new ClassInfo();
 
-    public static PlaceholderFragmentWebsite newInstance() {
+    static PlaceholderFragmentWebsite newInstance() {
         PlaceholderFragmentWebsite fragment = new PlaceholderFragmentWebsite();
         Bundle bundle = new Bundle();
         fragment.setArguments(bundle);
@@ -37,6 +38,7 @@ public class PlaceholderFragmentWebsite extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
