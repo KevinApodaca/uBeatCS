@@ -28,24 +28,24 @@ public class DetailedListAdapter extends ArrayAdapter<String> {
                 .inflate(R.layout.class_view_detailed_item, parent, false);
         TextView text = row.findViewById(R.id.helpCategory);
         text.setText(contentList.get(position));
-        if (contentList.get(position).toLowerCase().contains("Exam")) {
-            ImageView imageCategory = row.findViewById(R.id.imageCategory);
+        if (contentList.get(position).toLowerCase().contains("exam")) {
+            ImageView imageCategory = row.findViewById(R.id.imageCategory1);
             imageCategory.setImageResource(R.drawable.ic_list);
         }
-        if (contentList.get(position).toLowerCase().contains("Tutorial")) {
-            ImageView imageCategory = row.findViewById(R.id.imageCategory);
+        if (contentList.get(position).toLowerCase().contains("tutorial")) {
+            ImageView imageCategory = row.findViewById(R.id.imageCategory1);
             imageCategory.setImageResource(R.drawable.ic_chat_bubble);
         }
-        if (contentList.get(position).toLowerCase().contains("Image")) {
-            ImageView imageCategory = row.findViewById(R.id.imageCategory);
+        if (contentList.get(position).toLowerCase().contains("image")) {
+            ImageView imageCategory = row.findViewById(R.id.imageCategory1);
             imageCategory.setImageResource(R.drawable.ic_burst_mode);
         }
-        if (contentList.get(position).toLowerCase().contains("Lecture")) {
-            ImageView imageCategory = row.findViewById(R.id.imageCategory);
-            imageCategory.setImageResource(R.drawable.ic_assignment);
+        if (contentList.get(position).toLowerCase().contains("lecture")) {
+            ImageView imageCategory = row.findViewById(R.id.imageCategory1);
+            imageCategory.setImageResource(R.drawable.ic_note_add);
         }
-        if (contentList.get(position).toLowerCase().contains("Homework")) {
-            ImageView imageCategory = row.findViewById(R.id.imageCategory);
+        if (contentList.get(position).toLowerCase().contains("homework")) {
+            ImageView imageCategory = row.findViewById(R.id.imageCategory1);
             imageCategory.setImageResource(R.drawable.ic_assignment);
         }
         return row;

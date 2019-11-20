@@ -60,7 +60,7 @@ public class YoutubeViewer extends YouTubeBaseActivity implements YouTubePlayer.
     }
 
     public final class Config {
-        public static final String YOUTUBE_API_KEY = "KEY";
+        public static final String YOUTUBE_API_KEY = "AIzaSyAoXzjItmyCNqDipAOGjqGRuw5u9nZh_Q8";
 
         private Config() {
         }
