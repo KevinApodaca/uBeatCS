@@ -1,16 +1,12 @@
 package cs4330.cs.utep.ubeatcs;
 
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 public class WebScrape {
 
@@ -20,26 +16,41 @@ public class WebScrape {
         this.url = url;
     }
 
-    public String getTitle() {
-        String[] urlSplit = url.split("/");
-        String toCompare = urlSplit[urlSplit.length - 1];
-        String title = null;
+
+    public void getInfo(String url) {
+        String output = "";
         Document doc;
         try {
             doc = Jsoup.connect(url).get();
-            title = doc.title();
-            for (Element e : doc.getElementsByClass("profilePicture img-thumbnail")) {
-                Log.e("Image", e.attr("src"));
-            }
+            output = String.valueOf(doc.getElementsByClass("peopleSection"));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if (!url.contains("Dr.")) {
-            String[] name = title.split(" ");
-            title = name[0] + " " + name[1];
+//        Log.e("Output", output);
+    }
+
+    public String getName() {
+//        String[] urlSplit = url.split("/");
+//        String toCompare = urlSplit[urlSplit.length - 1];
+        String name = null;
+        Document doc;
+        try {
+            doc = Jsoup.connect(url).get();
+            name = doc.title();
+//            for (Element e : doc.getElementsByClass("profilePicture img-thumbnail")) {
+//                if (doc.getElementById("profilePicture img-thumbnail").toString().contains(toCompare)) {
+//                    Log.e("Image", e.attr("src"));
+//                }
+//            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        Log.e("Teacher", title);
-        return title;
+        if (!url.contains("gates")) {
+            String[] fixedName = name.split(" ");
+            name = fixedName[0] + " " + fixedName[1];
+        }
+        Log.e("Teacher", name);
+        return name;
     }
 }
 

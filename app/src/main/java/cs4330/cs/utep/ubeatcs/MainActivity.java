@@ -48,6 +48,9 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
         swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
         swipeRefreshLayout.setOnRefreshListener(() -> {
+            for (int i = 0; i < classList.size(); i++) {
+                getDetails(i, false);
+            }
             renewList();
             swipeRefreshLayout.setRefreshing(false);
         });
@@ -202,13 +205,14 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
     public void addClass(String name, String number, String url) {
         ClassInfo classInfo = new ClassInfo(name, number, url);
         classList.add(classInfo);
-        getInfo(classList.indexOf(classInfo), true);
+        getDetails(classList.indexOf(classInfo), true);
     }
 
-    private void getInfo(int position, boolean isNew) {
+    private void getDetails(int position, boolean isNew) {
         Thread thread = new Thread(() -> {
             WebScrape webScrape = new WebScrape(classList.get(position).getClass_url());
-            classList.get(position).setClass_teacher(webScrape.getTitle());
+            classList.get(position).setClass_teacher(webScrape.getName());
+            webScrape.getInfo("https://www.utep.edu/cs/people/index.html");
         });
         thread.start();
         progressBar.setVisibility(ProgressBar.VISIBLE);
