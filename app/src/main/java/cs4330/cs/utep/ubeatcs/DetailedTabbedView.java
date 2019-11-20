@@ -11,10 +11,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
-public class DetailedView extends AppCompatActivity {
-
-    ListView listView;
-
+public class DetailedTabbedView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +19,6 @@ public class DetailedView extends AppCompatActivity {
         Intent i = getIntent();
         ClassInfo sendClass = new ClassInfo(i.getStringExtra("name"), i.getStringExtra("teacher"), i.getStringExtra("number"), i.getStringExtra("url"));
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager(), sendClass);
-        listView = findViewById(R.id.listViewDetailed);
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
@@ -31,4 +27,5 @@ public class DetailedView extends AppCompatActivity {
         fab.setOnClickListener(view -> Snackbar.make(view, "Action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show());
     }
+
 }

@@ -36,6 +36,12 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ClassInfo classInfo = new ClassInfo();
+        classInfo.setClass_teacher("Yoonsik Cheon");
+        classInfo.setClass_url("http://www.cs.utep.edu/cheon/");
+        classInfo.setClass_number("CS4330");
+        classInfo.setClass_name("Mobile Apps");
+        classList.add(classInfo);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
@@ -119,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
     }
 
     private void itemClicked(int position) {
-        Intent i = new Intent(this, DetailedView.class);
+        Intent i = new Intent(this, DetailedTabbedView.class);
         i.putExtra("name", classList.get(position).getClass_name());
         i.putExtra("url", classList.get(position).getClass_url());
         i.putExtra("number", classList.get(position).getClass_number());

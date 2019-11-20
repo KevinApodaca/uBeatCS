@@ -21,4 +21,9 @@
     <string name="edit">Edit</string>
     <string name="class_number">Class Number</string>
     <string name="class_name">Class Name</string>
+    <string name="take_picture">Take Picture</string>
+    <string name="image_note">Image Note</string>
+    <string name="save">Save</string>
+    <string name="capture">Capture</string>
+    <string name="captured_image">Captured Image</string>
 </resources>

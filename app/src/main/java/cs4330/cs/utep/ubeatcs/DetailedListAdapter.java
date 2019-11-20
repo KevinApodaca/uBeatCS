@@ -15,7 +15,6 @@ public class DetailedListAdapter extends ArrayAdapter<String> {
 
     private final List<String> contentList;
 
-
     public DetailedListAdapter(Context ctx, List<String> content) {
         super(ctx, -1, content);
         this.contentList = content;
@@ -31,5 +30,8 @@ public class DetailedListAdapter extends ArrayAdapter<String> {
         return row;
     }
 
+    public interface Listener {
+        void doAction(int position);
+    }
 }
 

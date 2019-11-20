@@ -1,12 +1,12 @@
 package cs4330.cs.utep.ubeatcs;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
@@ -15,12 +15,14 @@ import java.util.List;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class PlaceholderFragment extends Fragment {
+public class PlaceholderFragment extends Fragment implements DetailedListAdapter.Listener {
+
 
     private static final String ARG_SECTION_NUMBER = "section_number";
-    List<String> subjectList = new ArrayList<>();
-    DetailedListAdapter listAdapter;
-    ClassInfo globalClassInfo;
+    private ListView listView;
+    private List<String> subjectList = new ArrayList<>();
+    private DetailedListAdapter listAdapter;
+    private ClassInfo globalClassInfo;
 
     public static PlaceholderFragment newInstance(int index) {
         PlaceholderFragment fragment = new PlaceholderFragment();
@@ -44,18 +46,25 @@ public class PlaceholderFragment extends Fragment {
         subjectList.add("Previous Exam");
         subjectList.add("Online Tutorial");
         subjectList.add("Lecture Note");
+        subjectList.add("Image Notes");
         subjectList.add("Example Test");
         subjectList.add("Example Quizzes");
-
     }
 
     @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_detailed_view, container, false);
-        ListView listView = root.findViewById(R.id.listViewDetailed);
+        listView = root.findViewById(R.id.listViewDetailed);
+        listView.setOnItemClickListener((parent, view, position, id) -> doAction(position));
         listView.setAdapter(listAdapter);
         return root;
+    }
+
+    @Override
+    public void doAction(int position) {
+        if (position == 4) {
+            Intent i = new Intent(getContext(), TakePictureActivity.class);
+            startActivity(i);
+        }
     }
 }
