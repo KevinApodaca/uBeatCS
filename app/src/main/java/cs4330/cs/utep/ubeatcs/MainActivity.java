@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
         classInfo.setClass_teacher("Yoonsik Cheon");
         classInfo.setClass_url("http://www.cs.utep.edu/cheon/");
         classInfo.setClass_number("CS4330");
-        classInfo.setClass_name("Mobile Apps");
+        classInfo.setClass_name("Mobile Application Development");
         classInfo.setClass_email("ycheon@utep.edu");
         classList.add(classInfo);
         Toolbar toolbar = findViewById(R.id.toolbar);
