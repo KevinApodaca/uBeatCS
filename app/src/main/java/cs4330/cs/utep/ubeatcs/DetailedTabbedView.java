@@ -61,7 +61,8 @@ public class DetailedTabbedView extends AppCompatActivity {
     }
 
     private void configureImageDest(Bitmap image){
-        //TODO send image to model or activity that is going to save the image to display in the imageView
+        //TODO display the dialog to the user that is selecting the destination of the bitmap, then ->
+        //TODO send image to model-layer or activity that is going to save the image to display in the imageView
     }
 
     private void sendEmailDialog() {
