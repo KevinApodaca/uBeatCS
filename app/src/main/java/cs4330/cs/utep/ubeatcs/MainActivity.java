@@ -31,7 +31,9 @@ import java.util.List;
 /**
  * @author Isaias Leos
  */
-public class MainActivity extends AppCompatActivity implements ListAdapter.Listener, NewProductDialogActivity.NewProductDialogListener, EditProductDialogActivity.EditProductDialogListener {
+public class MainActivity extends AppCompatActivity implements ListAdapter.Listener,
+        NewProductDialogActivity.NewProductDialogListener,
+        EditProductDialogActivity.EditProductDialogListener {
 
     private List<StudyClass> classStudyList = new ArrayList<>();
     private ProgressBar progressBar;
@@ -51,9 +53,10 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
         studyClass.setClass_url("http://www.cs.utep.edu/cheon/");
         studyClass.setClass_number("CS4330");
         studyClass.setClass_name("Mobile Application Development");
+        studyClass.setClass_crn("17842");
         studyClass.setClass_email("ycheon@utep.edu");
         classStudyList.add(studyClass);
-
+        Log.e("Variables1", studyClass.getClass_crn() + ":" + studyClass.getClass_teacher() + ":" + studyClass.getClass_email());
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -80,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
         fab.setOnClickListener(view -> {
             // initiate the Toast with context, message and duration for the Toast
             Toast toast = Toast.makeText(getApplicationContext(),
-                    "Select a professor's course homepage",
+                    "Add a course!",
                     Toast.LENGTH_LONG);
             toast.setGravity(Gravity.TOP, 0, 0);
             View view2 = toast.getView();
@@ -88,9 +91,8 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
             TextView text = view2.findViewById(android.R.id.message);
             text.setTextColor(Color.rgb(33, 33, 33));
             toast.show();
-            toBrowser("https://www.utep.edu/cs/people/index.html");
+            openNewProductDialog();
         });
-        handleShare(getIntent());
         renewList();
     }
 
@@ -106,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
             if ("text/plain".equals(type)) {
                 String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
                 if (sharedText != null) {
-                    openNewProductDialog(sharedText);
+                    openNewProductDialog();
                 }
             }
         }
@@ -176,7 +178,6 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
      * Create a user dialog box to show who created the application.
      */
     private void openAboutDialog() {
-        Log.e("About", "Dialog Opened");
         AboutActivity dialog = new AboutActivity();
         dialog.show(getSupportFragmentManager(), "About Menu");
     }
@@ -188,6 +189,7 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
         i.putExtra("number", classStudyList.get(position).getClass_number());
         i.putExtra("teacher", classStudyList.get(position).getClass_teacher());
         i.putExtra("email", classStudyList.get(position).getClass_email());
+        i.putExtra("crn", classStudyList.get(position).getClass_crn());
         i.putStringArrayListExtra("youtubeList", (ArrayList<String>) classStudyList.get(position).getYoutubePlaylist());
         startActivity(i);
     }
@@ -208,26 +210,17 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
         Bundle bundle = new Bundle();
         bundle.putInt("index", index);
         bundle.putString("name", classStudyList.get(index).getClass_name());
-        bundle.putString("number", classStudyList.get(index).getClass_number());
-        bundle.putString("url", classStudyList.get(index).getClass_url());
+        bundle.putString("crn", classStudyList.get(index).getClass_crn());
         dialog.setArguments(bundle);
         dialog.show(getSupportFragmentManager(), "Edit Class");
     }
 
     /**
      * This method creates a dialog window to add a new product.
-     *
-     * @param sharedText url being shared from other applications
      */
-    private void openNewProductDialog(String sharedText) {
+    private void openNewProductDialog() {
         NewProductDialogActivity dialog = new NewProductDialogActivity();
-        if (sharedText != null) {
-            Bundle bundle = new Bundle();
-            bundle.putString("name", sharedText);
-            bundle.putString("url", sharedText);
-            dialog.setArguments(bundle);
-        }
-        dialog.show(getSupportFragmentManager(), "New Course Added");
+        dialog.show(getSupportFragmentManager(), "added");
     }
 
     @Override
@@ -253,16 +246,19 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
      * Method to add class to current list.
      */
     @Override
-    public void addClass(String name, String number, String url) {
-        StudyClass studyClass = new StudyClass(name, number, url);
+    public void addClass(String name, String crn) {
+        StudyClass studyClass = new StudyClass(name, crn);
         classStudyList.add(studyClass);
         getDetails(classStudyList.indexOf(studyClass), true);
     }
 
     private void getDetails(int position, boolean isNew) {
         Thread thread = new Thread(() -> {
-            WebScrape webScrape = new WebScrape(classStudyList.get(position).getClass_url());
-            classStudyList.get(position).setClass_teacher(webScrape.getName());
+            String filter = classStudyList.get(position).getClass_crn();
+            WebScrape webScrape = new WebScrape();
+            classStudyList.get(position).setClass_teacher(webScrape.getInfo("name", filter));
+            classStudyList.get(position).setClass_email(webScrape.getInfo("email", filter));
+            classStudyList.get(position).setClass_url(webScrape.getInfo("link", filter));
         });
         thread.start();
         progressBar.setVisibility(ProgressBar.VISIBLE);
@@ -284,10 +280,9 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
      * Method to edit class from the list.
      */
     @Override
-    public void update(String name, String number, String url, int index) {
+    public void update(String name, String crn, int index) {
         classStudyList.get(index).setClass_name(name);
-        classStudyList.get(index).setClass_url(url);
-        classStudyList.get(index).setClass_number(url);
+        classStudyList.get(index).setClass_crn(crn);
         renewList();
     }
 }

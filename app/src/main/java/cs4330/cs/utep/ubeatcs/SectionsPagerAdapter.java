@@ -39,6 +39,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         bundle.putString("url", globalStudyClass.getClass_url());
         bundle.putString("email", globalStudyClass.getClass_email());
         bundle.putStringArrayList("youtubeList", (ArrayList<String>) globalStudyClass.getYoutubePlaylist());
+        bundle.putString("crn", globalStudyClass.getClass_crn());
         if (position == 0) {
             PlaceholderFragment placeholderFragment = PlaceholderFragment.newInstance(position);
             placeholderFragment.setArguments(bundle);

@@ -32,4 +32,5 @@
     <string name="seek_to_hint">Seconds</string>
     <string name="about">About</string>
     <string name="youtube_icon">Youtube Icon</string>
+    <string name="class_crn">Class CRN</string>
 </resources>

@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_alignEnd="@+id/fab"
             android:clickable="true"
-            app:srcCompat="@android:drawable/ic_menu_add" />
+            app:srcCompat="@drawable/ic_note_add" />
     </RelativeLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

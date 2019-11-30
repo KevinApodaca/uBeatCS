@@ -37,7 +37,7 @@ public class DetailedListAdapter extends ArrayAdapter<String> {
         }
         if (contentList.get(position).toLowerCase().contains("tutorial")) {
             ImageView imageCategory = row.findViewById(R.id.imageCategory1);
-            imageCategory.setImageResource(R.drawable.ic_chat_bubble);
+            imageCategory.setImageResource(R.drawable.ic_turned_in);
         }
         if (contentList.get(position).toLowerCase().contains("image")) {
             ImageView imageCategory = row.findViewById(R.id.imageCategory1);

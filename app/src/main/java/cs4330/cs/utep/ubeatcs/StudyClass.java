@@ -16,14 +16,16 @@ class StudyClass {
     private String class_url;
     private String class_email;
     private List<String> youtubePlaylist;
+    private String class_crn;
 
-    StudyClass(String class_name, String class_teacher, String class_number, String class_url, String class_email, ArrayList<String> youtubeLists) {
+    StudyClass(String class_name, String class_teacher, String class_number, String class_url, String class_email, ArrayList<String> youtubeLists, String crn) {
         this.class_name = class_name;
         this.class_teacher = class_teacher;
         this.class_number = class_number;
         this.class_url = class_url;
         this.class_email = class_email;
         this.youtubePlaylist = youtubeLists;
+        this.class_crn = crn;
     }
 
     /**
@@ -36,14 +38,12 @@ class StudyClass {
     /**
      * Class will instantiate the values.
      *
-     * @param name   - the course name
-     * @param number - the course number
-     * @param url    - the url of the course webpage
+     * @param name - the course name
+     * @param crn  - the course number
      */
-    StudyClass(String name, String number, String url) {
+    StudyClass(String name, String crn) {
         this.class_name = name;
-        this.class_number = number;
-        this.class_url = url;
+        this.class_crn = crn;
     }
 
     /**
@@ -136,11 +136,19 @@ class StudyClass {
         this.class_email = class_email;
     }
 
-    public List<String> getYoutubePlaylist() {
+    List<String> getYoutubePlaylist() {
         return youtubePlaylist;
     }
 
-    public void setYoutubePlaylist(List<String> youtubePlaylist) {
+    void setYoutubePlaylist(List<String> youtubePlaylist) {
         this.youtubePlaylist = youtubePlaylist;
+    }
+
+    String getClass_crn() {
+        return class_crn;
+    }
+
+    void setClass_crn(String class_crn) {
+        this.class_crn = class_crn;
     }
 }

@@ -23,8 +23,7 @@ import java.util.Objects;
 public class EditProductDialogActivity extends AppCompatDialogFragment {
 
     private EditText className;
-    private EditText classURL;
-    private EditText classNumber;
+    private EditText classCRN;
     private EditProductDialogListener listener;
 
     /**
@@ -40,17 +39,15 @@ public class EditProductDialogActivity extends AppCompatDialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.activity_new_product_dialog, null);
         className = view.findViewById(R.id.editClassNameString);
-        classNumber = view.findViewById(R.id.editNumberString);
-        classURL = view.findViewById(R.id.editURLString);
+        classCRN = view.findViewById(R.id.editCRNString);
         builder.setView(view).setTitle("Edit Class")
                 .setNegativeButton("Cancel", (dialog, which) -> dialog.cancel())
                 .setPositiveButton("Ok", (dialog, which) -> {
                     String name = className.getText().toString();
-                    String number = classNumber.getText().toString();
-                    String url = classURL.getText().toString();
-                    if (!name.equals("") && !url.equals("") && !number.equals("")) {
+                    String CRN = classCRN.getText().toString();
+                    if (!name.equals("") && !CRN.equals("")) {
                         assert getArguments() != null;
-                        listener.update(name, number, url, getArguments().getInt("index"));
+                        listener.update(name, CRN, getArguments().getInt("index"));
                     } else {
                         Toast.makeText(getContext(), "Error editing the class.", Toast.LENGTH_SHORT).show();
                     }
@@ -58,8 +55,7 @@ public class EditProductDialogActivity extends AppCompatDialogFragment {
 
         assert getArguments() != null;
         className.setText(getArguments().getString("name"));
-        classNumber.setText(getArguments().getString("number"));
-        classURL.setText(getArguments().getString("url"));
+        classCRN.setText(getArguments().getString("crn"));
         return builder.create();
     }
 
@@ -78,6 +74,6 @@ public class EditProductDialogActivity extends AppCompatDialogFragment {
      * Interface used to link the activity to the listener.
      */
     public interface EditProductDialogListener {
-        void update(String name, String number, String url, int index);
+        void update(String name, String crn, int index);
     }
 }
