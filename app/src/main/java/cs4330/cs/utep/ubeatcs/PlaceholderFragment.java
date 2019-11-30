@@ -18,12 +18,14 @@ import java.util.Objects;
 
 /**
  * A placeholder fragment containing a simple view.
+ *
  * @author Isaias Leos
  */
 public class PlaceholderFragment extends Fragment implements DetailedListAdapter.Listener {
 
 
     private static final String ARG_SECTION_NUMBER = "section_number";
+    private StudyClass globalStudyClass;
     private List<String> subjectList = new ArrayList<>();
     private DetailedListAdapter listAdapter;
 
@@ -39,13 +41,14 @@ public class PlaceholderFragment extends Fragment implements DetailedListAdapter
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle bundle = getArguments();
-        StudyClass globalStudyClass = new StudyClass();
+        globalStudyClass = new StudyClass();
         assert bundle != null;
         globalStudyClass.setClass_name(bundle.getString("name"));
         globalStudyClass.setClass_number(bundle.getString("number"));
         globalStudyClass.setClass_teacher(bundle.getString("teacher"));
         globalStudyClass.setClass_url(bundle.getString("url"));
         globalStudyClass.setClass_email(bundle.getString("email"));
+        globalStudyClass.setYoutubePlaylist(bundle.getStringArrayList("youtubeList"));
         listAdapter = new DetailedListAdapter(getContext(), subjectList);
         subjectList.add("Exam Review");
         subjectList.add("Tutorials");
@@ -72,7 +75,8 @@ public class PlaceholderFragment extends Fragment implements DetailedListAdapter
                 toBrowser("http://www.cs.utep.edu/cheon/cs4330/index.php?page=exams");
                 break;
             case 1:
-                Intent youtubeIntent = new Intent(getContext(), YoutubeViewer.class);
+                Intent youtubeIntent = new Intent(getContext(), YoutubeViewList.class);
+                youtubeIntent.putStringArrayListExtra("youtubeList", (ArrayList<String>) globalStudyClass.getYoutubePlaylist());
                 startActivity(youtubeIntent);
                 break;
             case 2:

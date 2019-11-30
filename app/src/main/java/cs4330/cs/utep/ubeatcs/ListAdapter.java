@@ -39,7 +39,6 @@ public class ListAdapter extends ArrayAdapter<StudyClass> {
                 : LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.class_view_item, parent, false);
         StudyClass currentClass = classNameList.get(position);
-
         TextView nameView = row.findViewById(R.id.className);
         TextView teacherNameView = row.findViewById(R.id.classTeacher);
         nameView.setText(currentClass.getClass_name());

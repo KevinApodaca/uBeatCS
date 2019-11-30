@@ -1,2 +1,2 @@
-include ':app', ':YouTubeAndroidPlayerApi'
+include ':app'
 rootProject.name='ubeatcs'

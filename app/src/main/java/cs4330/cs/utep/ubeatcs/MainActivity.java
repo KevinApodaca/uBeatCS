@@ -33,7 +33,7 @@ import java.util.List;
  */
 public class MainActivity extends AppCompatActivity implements ListAdapter.Listener, NewProductDialogActivity.NewProductDialogListener, EditProductDialogActivity.EditProductDialogListener {
 
-    List<StudyClass> classStudyList = new ArrayList<>();
+    private List<StudyClass> classStudyList = new ArrayList<>();
     private ProgressBar progressBar;
     private ListView listView;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -44,6 +44,9 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
         setContentView(R.layout.activity_main);
 
         StudyClass studyClass = new StudyClass();
+        studyClass.getYoutubePlaylist().add("https://www.youtube.com/watch?v=dFlPARW5IX8");
+        studyClass.getYoutubePlaylist().add("https://www.youtube.com/watch?v=6ow3L39Wxmg");
+        studyClass.getYoutubePlaylist().add("https://www.youtube.com/watch?v=rdGpT1pIJlw");
         studyClass.setClass_teacher("Yoonsik Cheon");
         studyClass.setClass_url("http://www.cs.utep.edu/cheon/");
         studyClass.setClass_number("CS4330");
@@ -185,6 +188,7 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
         i.putExtra("number", classStudyList.get(position).getClass_number());
         i.putExtra("teacher", classStudyList.get(position).getClass_teacher());
         i.putExtra("email", classStudyList.get(position).getClass_email());
+        i.putStringArrayListExtra("youtubeList", (ArrayList<String>) classStudyList.get(position).getYoutubePlaylist());
         startActivity(i);
     }
 

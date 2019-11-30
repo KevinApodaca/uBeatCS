@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import java.util.ArrayList;
+
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
@@ -36,6 +38,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         bundle.putString("teacher", globalStudyClass.getClass_teacher());
         bundle.putString("url", globalStudyClass.getClass_url());
         bundle.putString("email", globalStudyClass.getClass_email());
+        bundle.putStringArrayList("youtubeList", (ArrayList<String>) globalStudyClass.getYoutubePlaylist());
         if (position == 0) {
             PlaceholderFragment placeholderFragment = PlaceholderFragment.newInstance(position);
             placeholderFragment.setArguments(bundle);

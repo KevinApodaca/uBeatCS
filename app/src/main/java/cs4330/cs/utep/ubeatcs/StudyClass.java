@@ -1,7 +1,11 @@
 package cs4330.cs.utep.ubeatcs;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Class will be used to define the properties of each of the courses in the CS department.
+ *
  * @author Isaias Leos
  */
 class StudyClass {
@@ -11,19 +15,22 @@ class StudyClass {
     private String class_number;
     private String class_url;
     private String class_email;
+    private List<String> youtubePlaylist;
 
-    StudyClass(String class_name, String class_teacher, String class_number, String class_url, String class_email) {
+    StudyClass(String class_name, String class_teacher, String class_number, String class_url, String class_email, ArrayList<String> youtubeLists) {
         this.class_name = class_name;
         this.class_teacher = class_teacher;
         this.class_number = class_number;
         this.class_url = class_url;
         this.class_email = class_email;
+        this.youtubePlaylist = youtubeLists;
     }
 
     /**
      * Default constructor.
      */
     StudyClass() {
+        youtubePlaylist = new ArrayList<>();
     }
 
     /**
@@ -127,5 +134,13 @@ class StudyClass {
      */
     void setClass_email(String class_email) {
         this.class_email = class_email;
+    }
+
+    public List<String> getYoutubePlaylist() {
+        return youtubePlaylist;
+    }
+
+    public void setYoutubePlaylist(List<String> youtubePlaylist) {
+        this.youtubePlaylist = youtubePlaylist;
     }
 }

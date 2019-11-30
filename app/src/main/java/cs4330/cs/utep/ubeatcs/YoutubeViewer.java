@@ -3,6 +3,7 @@ package cs4330.cs.utep.ubeatcs;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.youtube.player.YouTubeBaseActivity;
@@ -17,12 +18,14 @@ import com.google.android.youtube.player.YouTubePlayerView;
 public class YoutubeViewer extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
 
     private static final int RECOVERY_REQUEST = 1;
+    private String youtubeID = "";
     private YouTubePlayerView youTubeView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.viewer_youtube);
+        youtubeID = getIntent().getStringExtra("youtubeID");
         youTubeView = findViewById(R.id.youtube_view);
         youTubeView.initialize(Config.YOUTUBE_API_KEY, this);
     }
@@ -30,7 +33,9 @@ public class YoutubeViewer extends YouTubeBaseActivity implements YouTubePlayer.
     @Override
     public void onInitializationSuccess(Provider provider, YouTubePlayer player, boolean wasRestored) {
         if (!wasRestored) {
-            player.cueVideo("dFlPARW5IX8");
+            String[] temp = youtubeID.split("=");
+            Log.e("Youtube", temp[temp.length - 1]);
+            player.cueVideo(temp[temp.length - 1]);
         }
     }
 

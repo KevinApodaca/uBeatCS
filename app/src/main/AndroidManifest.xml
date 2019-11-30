@@ -20,6 +20,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name=".YoutubeViewList" />
         <activity android:name=".TakePictureActivity" />
         <activity
             android:name=".DetailedTabbedView"

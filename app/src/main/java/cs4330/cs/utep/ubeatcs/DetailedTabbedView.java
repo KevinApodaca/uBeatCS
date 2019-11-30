@@ -21,7 +21,12 @@ public class DetailedTabbedView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailed_view);
         Intent i = getIntent();
-        sendClass = new StudyClass(i.getStringExtra("name"), i.getStringExtra("teacher"), i.getStringExtra("number"), i.getStringExtra("url"), i.getStringExtra("email"));
+        sendClass = new StudyClass(i.getStringExtra("name"),
+                i.getStringExtra("teacher"),
+                i.getStringExtra("number"),
+                i.getStringExtra("url"),
+                i.getStringExtra("email"),
+                i.getStringArrayListExtra("youtubeList"));
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager(), sendClass);
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
