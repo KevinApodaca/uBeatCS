@@ -20,6 +20,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
+/**
+ * @author Isaias Leos
+ */
 public class TakePictureActivity extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     private String currentPhotoPath;

@@ -9,9 +9,7 @@ import org.jsoup.nodes.Document;
 import java.io.IOException;
 
 /**
- * Class scrapes the web using JSoup and is used for scraping the image of the instructor, along with their email, as well as letting the user select which teacher's course to load.
- *
- * @author Kevin Apodaca
+ * @author Isaias Leos
  */
 public class WebScrape {
 

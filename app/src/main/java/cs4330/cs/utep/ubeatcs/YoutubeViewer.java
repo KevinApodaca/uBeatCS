@@ -11,7 +11,9 @@ import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayer.Provider;
 import com.google.android.youtube.player.YouTubePlayerView;
 
-
+/**
+ * @author Isaias Leos
+ */
 public class YoutubeViewer extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
 
     private static final int RECOVERY_REQUEST = 1;
@@ -23,7 +25,6 @@ public class YoutubeViewer extends YouTubeBaseActivity implements YouTubePlayer.
         setContentView(R.layout.viewer_youtube);
         youTubeView = findViewById(R.id.youtube_view);
         youTubeView.initialize(Config.YOUTUBE_API_KEY, this);
-
     }
 
     @Override

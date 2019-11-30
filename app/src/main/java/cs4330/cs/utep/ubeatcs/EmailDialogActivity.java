@@ -15,6 +15,9 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 import java.util.Objects;
 
+/**
+ * @author Isaias Leos
+ */
 public class EmailDialogActivity extends AppCompatDialogFragment {
 
     private EditText sendTo;

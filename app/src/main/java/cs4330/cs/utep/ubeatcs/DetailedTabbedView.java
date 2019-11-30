@@ -9,16 +9,19 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
+/**
+ * @author Isaias Leos
+ */
 public class DetailedTabbedView extends AppCompatActivity {
 
-    ClassInfo sendClass;
+    StudyClass sendClass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailed_view);
         Intent i = getIntent();
-        sendClass = new ClassInfo(i.getStringExtra("name"), i.getStringExtra("teacher"), i.getStringExtra("number"), i.getStringExtra("url"), i.getStringExtra("email"));
+        sendClass = new StudyClass(i.getStringExtra("name"), i.getStringExtra("teacher"), i.getStringExtra("number"), i.getStringExtra("url"), i.getStringExtra("email"));
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager(), sendClass);
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);

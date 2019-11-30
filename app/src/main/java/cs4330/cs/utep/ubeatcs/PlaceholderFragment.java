@@ -18,6 +18,7 @@ import java.util.Objects;
 
 /**
  * A placeholder fragment containing a simple view.
+ * @author Isaias Leos
  */
 public class PlaceholderFragment extends Fragment implements DetailedListAdapter.Listener {
 
@@ -38,13 +39,13 @@ public class PlaceholderFragment extends Fragment implements DetailedListAdapter
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle bundle = getArguments();
-        ClassInfo globalClassInfo = new ClassInfo();
+        StudyClass globalStudyClass = new StudyClass();
         assert bundle != null;
-        globalClassInfo.setClass_name(bundle.getString("name"));
-        globalClassInfo.setClass_number(bundle.getString("number"));
-        globalClassInfo.setClass_teacher(bundle.getString("teacher"));
-        globalClassInfo.setClass_url(bundle.getString("url"));
-        globalClassInfo.setClass_email(bundle.getString("email"));
+        globalStudyClass.setClass_name(bundle.getString("name"));
+        globalStudyClass.setClass_number(bundle.getString("number"));
+        globalStudyClass.setClass_teacher(bundle.getString("teacher"));
+        globalStudyClass.setClass_url(bundle.getString("url"));
+        globalStudyClass.setClass_email(bundle.getString("email"));
         listAdapter = new DetailedListAdapter(getContext(), subjectList);
         subjectList.add("Exam Review");
         subjectList.add("Tutorials");

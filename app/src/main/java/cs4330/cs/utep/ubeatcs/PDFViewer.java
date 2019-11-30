@@ -28,6 +28,9 @@ import com.shockwave.pdfium.PdfDocument;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * @author Isaias Leos
+ */
 public class PDFViewer extends AppCompatActivity implements OnPageChangeListener, OnLoadCompleteListener,
         OnPageErrorListener {
 

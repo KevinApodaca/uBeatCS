@@ -13,10 +13,12 @@ import androidx.fragment.app.Fragment;
 
 /**
  * A placeholder fragment containing a simple view.
+ *
+ * @author Isaias Leos
  */
 public class PlaceholderFragmentWebsite extends Fragment {
 
-    private ClassInfo globalClassInfo = new ClassInfo();
+    private StudyClass globalStudyClass = new StudyClass();
 
     static PlaceholderFragmentWebsite newInstance() {
         PlaceholderFragmentWebsite fragment = new PlaceholderFragmentWebsite();
@@ -29,11 +31,11 @@ public class PlaceholderFragmentWebsite extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         if (getArguments() != null) {
             Bundle bundle = getArguments();
-            globalClassInfo.setClass_name(bundle.getString("name"));
-            globalClassInfo.setClass_number(bundle.getString("number"));
-            globalClassInfo.setClass_teacher(bundle.getString("teacher"));
-            globalClassInfo.setClass_url(bundle.getString("url"));
-            globalClassInfo.setClass_email(bundle.getString("email"));
+            globalStudyClass.setClass_name(bundle.getString("name"));
+            globalStudyClass.setClass_number(bundle.getString("number"));
+            globalStudyClass.setClass_teacher(bundle.getString("teacher"));
+            globalStudyClass.setClass_url(bundle.getString("url"));
+            globalStudyClass.setClass_email(bundle.getString("email"));
         }
         super.onCreate(savedInstanceState);
     }
@@ -47,7 +49,7 @@ public class PlaceholderFragmentWebsite extends Fragment {
         WebView webView = root.findViewById(R.id.webView);
         webView.setWebViewClient(new WebViewController());
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl(globalClassInfo.getClass_url());
+        webView.loadUrl(globalStudyClass.getClass_url());
         return root;
     }
 

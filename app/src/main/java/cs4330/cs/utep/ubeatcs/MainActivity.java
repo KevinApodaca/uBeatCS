@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -27,38 +28,45 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Isaias Leos
+ */
 public class MainActivity extends AppCompatActivity implements ListAdapter.Listener, NewProductDialogActivity.NewProductDialogListener, EditProductDialogActivity.EditProductDialogListener {
 
-    List<ClassInfo> classList = new ArrayList<>();
+    List<StudyClass> classStudyList = new ArrayList<>();
     private ProgressBar progressBar;
     private ListView listView;
     private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ClassInfo classInfo = new ClassInfo();
-        classInfo.setClass_teacher("Yoonsik Cheon");
-        classInfo.setClass_url("http://www.cs.utep.edu/cheon/");
-        classInfo.setClass_number("CS4330");
-        classInfo.setClass_name("Mobile Application Development");
-        classInfo.setClass_email("ycheon@utep.edu");
-        classList.add(classInfo);
+
+        StudyClass studyClass = new StudyClass();
+        studyClass.setClass_teacher("Yoonsik Cheon");
+        studyClass.setClass_url("http://www.cs.utep.edu/cheon/");
+        studyClass.setClass_number("CS4330");
+        studyClass.setClass_name("Mobile Application Development");
+        studyClass.setClass_email("ycheon@utep.edu");
+        classStudyList.add(studyClass);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
         swipeRefreshLayout.setOnRefreshListener(() -> {
-            for (int i = 0; i < classList.size(); i++) {
+            for (int i = 0; i < classStudyList.size(); i++) {
                 getDetails(i, false);
             }
             renewList();
             swipeRefreshLayout.setRefreshing(false);
         });
+
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(ProgressBar.INVISIBLE);
+
         listView = findViewById(R.id.homeView);
         listView.setOnItemClickListener((parent, view, position, id) -> itemClicked(position));
         listView.setOnItemLongClickListener((arg0, view, position, id) -> {
@@ -67,7 +75,10 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
         });
         FloatingActionButton fab = findViewById(R.id.fab2);
         fab.setOnClickListener(view -> {
-            Toast toast = Toast.makeText(getApplicationContext(), "Select a professor's course homepage", Toast.LENGTH_LONG); // initiate the Toast with context, message and duration for the Toast
+            // initiate the Toast with context, message and duration for the Toast
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "Select a professor's course homepage",
+                    Toast.LENGTH_LONG);
             toast.setGravity(Gravity.TOP, 0, 0);
             View view2 = toast.getView();
             view2.setBackgroundColor(Color.rgb(2, 136, 209));
@@ -139,18 +150,46 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
         menuHelper.show();
     }
 
+    /**
+     * This method is called whenever an icon is clicked from the toolbar.
+     * Handles each button's action.
+     *
+     * @param item the menu item selected
+     * @return if an item was selected
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                return true;
+            case R.id.action_about:
+                openAboutDialog();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * Create a user dialog box to show who created the application.
+     */
+    private void openAboutDialog() {
+        Log.e("About", "Dialog Opened");
+        AboutActivity dialog = new AboutActivity();
+        dialog.show(getSupportFragmentManager(), "About Menu");
+    }
+
     private void itemClicked(int position) {
         Intent i = new Intent(this, DetailedTabbedView.class);
-        i.putExtra("name", classList.get(position).getClass_name());
-        i.putExtra("url", classList.get(position).getClass_url());
-        i.putExtra("number", classList.get(position).getClass_number());
-        i.putExtra("teacher", classList.get(position).getClass_teacher());
-        i.putExtra("email", classList.get(position).getClass_email());
+        i.putExtra("name", classStudyList.get(position).getClass_name());
+        i.putExtra("url", classStudyList.get(position).getClass_url());
+        i.putExtra("number", classStudyList.get(position).getClass_number());
+        i.putExtra("teacher", classStudyList.get(position).getClass_teacher());
+        i.putExtra("email", classStudyList.get(position).getClass_email());
         startActivity(i);
     }
 
     private void renewList() {
-        ListAdapter listAdapter = new ListAdapter(getBaseContext(), classList);
+        ListAdapter listAdapter = new ListAdapter(getBaseContext(), classStudyList);
         listView.setAdapter(listAdapter);
         listView.deferNotifyDataSetChanged();
     }
@@ -164,9 +203,9 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
         EditProductDialogActivity dialog = new EditProductDialogActivity();
         Bundle bundle = new Bundle();
         bundle.putInt("index", index);
-        bundle.putString("name", classList.get(index).getClass_name());
-        bundle.putString("number", classList.get(index).getClass_number());
-        bundle.putString("url", classList.get(index).getClass_url());
+        bundle.putString("name", classStudyList.get(index).getClass_name());
+        bundle.putString("number", classStudyList.get(index).getClass_number());
+        bundle.putString("url", classStudyList.get(index).getClass_url());
         dialog.setArguments(bundle);
         dialog.show(getSupportFragmentManager(), "Edit Class");
     }
@@ -195,7 +234,7 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
 
     @Override
     public void delete(int index) {
-        classList.remove(index);
+        classStudyList.remove(index);
         renewList();
         Log.e("Delete", "End");
     }
@@ -211,15 +250,15 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
      */
     @Override
     public void addClass(String name, String number, String url) {
-        ClassInfo classInfo = new ClassInfo(name, number, url);
-        classList.add(classInfo);
-        getDetails(classList.indexOf(classInfo), true);
+        StudyClass studyClass = new StudyClass(name, number, url);
+        classStudyList.add(studyClass);
+        getDetails(classStudyList.indexOf(studyClass), true);
     }
 
     private void getDetails(int position, boolean isNew) {
         Thread thread = new Thread(() -> {
-            WebScrape webScrape = new WebScrape(classList.get(position).getClass_url());
-            classList.get(position).setClass_teacher(webScrape.getName());
+            WebScrape webScrape = new WebScrape(classStudyList.get(position).getClass_url());
+            classStudyList.get(position).setClass_teacher(webScrape.getName());
         });
         thread.start();
         progressBar.setVisibility(ProgressBar.VISIBLE);
@@ -242,6 +281,9 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
      */
     @Override
     public void update(String name, String number, String url, int index) {
-
+        classStudyList.get(index).setClass_name(name);
+        classStudyList.get(index).setClass_url(url);
+        classStudyList.get(index).setClass_number(url);
+        renewList();
     }
 }
