@@ -12,6 +12,9 @@ import androidx.annotation.NonNull;
 
 import java.util.List;
 
+/**
+ * @author Isaias Leos
+ */
 public class DetailedListAdapter extends ArrayAdapter<String> {
 
     private final List<String> contentList;

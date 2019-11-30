@@ -13,11 +13,14 @@ import androidx.annotation.NonNull;
 
 import java.util.List;
 
-public class ListAdapter extends ArrayAdapter<ClassInfo> {
+/**
+ * @author Isaias Leos
+ */
+public class ListAdapter extends ArrayAdapter<StudyClass> {
 
-    private final List<ClassInfo> classNameList;
+    private final List<StudyClass> classNameList;
 
-    ListAdapter(Context ctx, List<ClassInfo> className) {
+    ListAdapter(Context ctx, List<StudyClass> className) {
         super(ctx, -1, className);
         this.classNameList = className;
     }
@@ -35,7 +38,7 @@ public class ListAdapter extends ArrayAdapter<ClassInfo> {
         View row = convertView != null ? convertView
                 : LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.class_view_item, parent, false);
-        ClassInfo currentClass = classNameList.get(position);
+        StudyClass currentClass = classNameList.get(position);
 
         TextView nameView = row.findViewById(R.id.className);
         TextView teacherNameView = row.findViewById(R.id.classTeacher);

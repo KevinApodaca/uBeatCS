@@ -12,28 +12,30 @@ import androidx.fragment.app.FragmentPagerAdapter;
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
+ *
+ * @author Isaias Leos
  */
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
     private final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2};
     private final Context mContext;
-    private ClassInfo globalClassInfo;
+    private StudyClass globalStudyClass;
 
-    SectionsPagerAdapter(Context context, FragmentManager fm, ClassInfo currentClass) {
+    SectionsPagerAdapter(Context context, FragmentManager fm, StudyClass currentClass) {
         super(fm);
         mContext = context;
-        globalClassInfo = currentClass;
+        globalStudyClass = currentClass;
     }
 
     @Override
     public Fragment getItem(int position) {
         Bundle bundle = new Bundle();
-        bundle.putString("name", globalClassInfo.getClass_name());
-        bundle.putString("number", globalClassInfo.getClass_number());
-        bundle.putString("teacher", globalClassInfo.getClass_teacher());
-        bundle.putString("url", globalClassInfo.getClass_url());
-        bundle.putString("email", globalClassInfo.getClass_email());
+        bundle.putString("name", globalStudyClass.getClass_name());
+        bundle.putString("number", globalStudyClass.getClass_number());
+        bundle.putString("teacher", globalStudyClass.getClass_teacher());
+        bundle.putString("url", globalStudyClass.getClass_url());
+        bundle.putString("email", globalStudyClass.getClass_email());
         if (position == 0) {
             PlaceholderFragment placeholderFragment = PlaceholderFragment.newInstance(position);
             placeholderFragment.setArguments(bundle);

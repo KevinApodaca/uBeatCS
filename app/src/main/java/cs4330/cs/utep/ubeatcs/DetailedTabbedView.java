@@ -13,22 +13,25 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
-
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
+/**
+ * @author Isaias Leos
+ */
 public class DetailedTabbedView extends AppCompatActivity {
 
     ClassInfo sendClass;
     private FloatingActionButton retrievePicture;
     private static final int LOADING_IMAGE_RESULT = 123;
+    StudyClass sendClass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailed_view);
         Intent i = getIntent();
-        sendClass = new ClassInfo(i.getStringExtra("name"), i.getStringExtra("teacher"), i.getStringExtra("number"), i.getStringExtra("url"), i.getStringExtra("email"));
+        sendClass = new StudyClass(i.getStringExtra("name"), i.getStringExtra("teacher"), i.getStringExtra("number"), i.getStringExtra("url"), i.getStringExtra("email"));
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager(), sendClass);
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
@@ -36,7 +39,7 @@ public class DetailedTabbedView extends AppCompatActivity {
         tabs.setupWithViewPager(viewPager);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> sendEmailDialog());
-
+      
         retrievePicture = findViewById(R.id.addingPictureFab);
         retrievePicture.setOnClickListener(view ->{
             Intent gettingImageIntent = new Intent(Intent.ACTION_PICK);

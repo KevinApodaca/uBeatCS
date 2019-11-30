@@ -2,8 +2,9 @@ package cs4330.cs.utep.ubeatcs;
 
 /**
  * Class will be used to define the properties of each of the courses in the CS department.
+ * @author Isaias Leos
  */
-public class ClassInfo {
+class StudyClass {
 
     private String class_name;
     private String class_teacher;
@@ -11,7 +12,7 @@ public class ClassInfo {
     private String class_url;
     private String class_email;
 
-    public ClassInfo(String class_name, String class_teacher, String class_number, String class_url, String class_email) {
+    StudyClass(String class_name, String class_teacher, String class_number, String class_url, String class_email) {
         this.class_name = class_name;
         this.class_teacher = class_teacher;
         this.class_number = class_number;
@@ -22,7 +23,7 @@ public class ClassInfo {
     /**
      * Default constructor.
      */
-    public ClassInfo() {
+    StudyClass() {
     }
 
     /**
@@ -32,7 +33,7 @@ public class ClassInfo {
      * @param number - the course number
      * @param url    - the url of the course webpage
      */
-    public ClassInfo(String name, String number, String url) {
+    StudyClass(String name, String number, String url) {
         this.class_name = name;
         this.class_number = number;
         this.class_url = url;
@@ -43,7 +44,7 @@ public class ClassInfo {
      *
      * @return the class name.
      */
-    public String getClass_name() {
+    String getClass_name() {
         return class_name;
     }
 
@@ -52,7 +53,7 @@ public class ClassInfo {
      *
      * @param class_name - the name of the course
      */
-    public void setClass_name(String class_name) {
+    void setClass_name(String class_name) {
         this.class_name = class_name;
     }
 
@@ -61,7 +62,7 @@ public class ClassInfo {
      *
      * @return the class instructor.
      */
-    public String getClass_teacher() {
+    String getClass_teacher() {
         return class_teacher;
     }
 
@@ -70,7 +71,7 @@ public class ClassInfo {
      *
      * @param class_teacher - the name of the teacher.
      */
-    public void setClass_teacher(String class_teacher) {
+    void setClass_teacher(String class_teacher) {
         this.class_teacher = class_teacher;
     }
 
@@ -79,7 +80,7 @@ public class ClassInfo {
      *
      * @return the course number.
      */
-    public String getClass_number() {
+    String getClass_number() {
         return class_number;
     }
 
@@ -88,7 +89,7 @@ public class ClassInfo {
      *
      * @param class_number - the number of the course.
      */
-    public void setClass_number(String class_number) {
+    void setClass_number(String class_number) {
         this.class_number = class_number;
     }
 
@@ -97,7 +98,7 @@ public class ClassInfo {
      *
      * @return the url of the webpage
      */
-    public String getClass_url() {
+    String getClass_url() {
         return class_url;
     }
 
@@ -106,7 +107,7 @@ public class ClassInfo {
      *
      * @param class_url - the url of the course.
      */
-    public void setClass_url(String class_url) {
+    void setClass_url(String class_url) {
         this.class_url = class_url;
     }
 
@@ -115,7 +116,7 @@ public class ClassInfo {
      *
      * @return the email of the instructor.
      */
-    public String getClass_email() {
+    String getClass_email() {
         return class_email;
     }
 
@@ -124,7 +125,7 @@ public class ClassInfo {
      *
      * @param class_email - the instructor email.
      */
-    public void setClass_email(String class_email) {
+    void setClass_email(String class_email) {
         this.class_email = class_email;
     }
 }
