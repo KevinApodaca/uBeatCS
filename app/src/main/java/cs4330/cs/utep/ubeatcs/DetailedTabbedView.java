@@ -1,19 +1,29 @@
 package cs4330.cs.utep.ubeatcs;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 /**
  * @author Isaias Leos
  */
 public class DetailedTabbedView extends AppCompatActivity {
 
+    ClassInfo sendClass;
+    private FloatingActionButton retrievePicture;
+    private static final int LOADING_IMAGE_RESULT = 123;
     StudyClass sendClass;
 
     @Override
@@ -34,6 +44,33 @@ public class DetailedTabbedView extends AppCompatActivity {
         tabs.setupWithViewPager(viewPager);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> sendEmailDialog());
+      
+        retrievePicture = findViewById(R.id.addingPictureFab);
+        retrievePicture.setOnClickListener(view ->{
+            Intent gettingImageIntent = new Intent(Intent.ACTION_PICK);
+            gettingImageIntent.setType("image/*");
+            startActivityForResult(gettingImageIntent, LOADING_IMAGE_RESULT);
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == LOADING_IMAGE_RESULT){
+            try{
+                final Uri imageUri = data.getData();
+                final InputStream imageStream = getContentResolver().openInputStream(imageUri);
+                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                configureImageDest(selectedImage);
+            }catch(FileNotFoundException e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void configureImageDest(Bitmap image){
+        //TODO display the dialog to the user that is selecting the destination of the bitmap, then ->
+        //TODO send image to model-layer or activity that is going to save the image to display in the imageView
     }
 
     private void sendEmailDialog() {
