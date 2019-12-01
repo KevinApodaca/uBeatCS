@@ -36,8 +36,8 @@ public class URLViewAdapterList extends ArrayAdapter<String> {
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         View row = convertView != null ? convertView
                 : LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.youtube_list, parent, false);
-        TextView youtubeTextView = row.findViewById(R.id.youtubeTextView);
+                .inflate(R.layout.class_view_detailed_item, parent, false);
+        TextView youtubeTextView = row.findViewById(R.id.helpCategory);
         Log.e("URLViewAdapterList", urlList.get(position));
         youtubeTextView.setText(urlList.get(position));
         return row;
@@ -46,8 +46,6 @@ public class URLViewAdapterList extends ArrayAdapter<String> {
     public interface Listener {
 
         void delete(int index);
-
-        void edit(int index);
 
         void player(int index);
 

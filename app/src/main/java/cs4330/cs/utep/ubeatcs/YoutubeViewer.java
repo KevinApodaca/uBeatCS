@@ -33,9 +33,13 @@ public class YoutubeViewer extends YouTubeBaseActivity implements YouTubePlayer.
     @Override
     public void onInitializationSuccess(Provider provider, YouTubePlayer player, boolean wasRestored) {
         if (!wasRestored) {
-            String[] temp = youtubeID.split("=");
-            Log.e("Youtube", temp[temp.length - 1]);
-            player.cueVideo(temp[temp.length - 1]);
+            if (youtubeID.contains("watch?v")) {
+                String[] temp = youtubeID.split("=");
+                player.cueVideo(temp[temp.length - 1]);
+            } else {
+                String[] temp = youtubeID.split(".be/");
+                player.cueVideo(temp[temp.length - 1]);
+            }
         }
     }
 

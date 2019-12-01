@@ -3,7 +3,6 @@ package cs4330.cs.utep.ubeatcs;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,9 +49,9 @@ public class PlaceholderFragment extends Fragment implements DetailedListAdapter
         globalStudyClass.setClass_email(bundle.getString("email"));
         globalStudyClass.setYoutubePlaylist(bundle.getStringArrayList("youtubeList"));
         globalStudyClass.setClass_crn(bundle.getString("crn"));
-        listAdapter = new DetailedListAdapter(getContext(), subjectList);
+        listAdapter = new DetailedListAdapter(getContext(), subjectList, globalStudyClass);
         subjectList.add("Exam Review");
-        subjectList.add("Tutorials");
+        subjectList.add("Youtube Tutorials");
         subjectList.add("Lecture Notes");
         subjectList.add("Image Notes");
         subjectList.add("Example Test/Quizzes");
@@ -70,10 +69,8 @@ public class PlaceholderFragment extends Fragment implements DetailedListAdapter
 
     @Override
     public void doAction(int position) {
-        Log.e("Position", String.valueOf(position));
         switch (position) {
             case 0:
-                toBrowser("http://www.cs.utep.edu/cheon/cs4330/index.php?page=exams");
                 break;
             case 1:
                 Intent youtubeIntent = new Intent(getContext(), YoutubeViewList.class);
@@ -81,7 +78,6 @@ public class PlaceholderFragment extends Fragment implements DetailedListAdapter
                 startActivity(youtubeIntent);
                 break;
             case 2:
-                toBrowser("http://www.cs.utep.edu/cheon/cs4330/index.php?page=notes");
                 break;
             case 3:
                 Intent i = new Intent(getContext(), TakePictureActivity.class);
@@ -93,7 +89,6 @@ public class PlaceholderFragment extends Fragment implements DetailedListAdapter
                 startActivity(intent);
                 break;
             case 5:
-                toBrowser("http://www.cs.utep.edu/cheon/cs4330/index.php?page=homework");
                 break;
         }
     }

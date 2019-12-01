@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
         studyClass.setClass_crn("17842");
         studyClass.setClass_email("ycheon@utep.edu");
         classStudyList.add(studyClass);
-        Log.e("Variables1", studyClass.getClass_crn() + ":" + studyClass.getClass_teacher() + ":" + studyClass.getClass_email());
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -81,7 +80,6 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
         });
         FloatingActionButton fab = findViewById(R.id.fab2);
         fab.setOnClickListener(view -> {
-            // initiate the Toast with context, message and duration for the Toast
             Toast toast = Toast.makeText(getApplicationContext(),
                     "Add a course!",
                     Toast.LENGTH_LONG);
@@ -195,7 +193,7 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
     }
 
     private void renewList() {
-        ListAdapter listAdapter = new ListAdapter(getBaseContext(), classStudyList);
+        ListAdapter listAdapter = new ListAdapter(this, classStudyList);
         listView.setAdapter(listAdapter);
         listView.deferNotifyDataSetChanged();
     }
@@ -212,7 +210,7 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
         bundle.putString("name", classStudyList.get(index).getClass_name());
         bundle.putString("crn", classStudyList.get(index).getClass_crn());
         dialog.setArguments(bundle);
-        dialog.show(getSupportFragmentManager(), "Edit Class");
+        dialog.show(getSupportFragmentManager(), "edited");
     }
 
     /**
@@ -233,13 +231,12 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
     public void delete(int index) {
         classStudyList.remove(index);
         renewList();
-        Log.e("Delete", "End");
     }
 
     @Override
     public void edit(int index) {
         editProductDialog(index);
-        Log.e("Edit", "End");
+        renewList();
     }
 
     /**
@@ -250,15 +247,20 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
         StudyClass studyClass = new StudyClass(name, crn);
         classStudyList.add(studyClass);
         getDetails(classStudyList.indexOf(studyClass), true);
+        renewList();
     }
 
     private void getDetails(int position, boolean isNew) {
         Thread thread = new Thread(() -> {
             String filter = classStudyList.get(position).getClass_crn();
             WebScrape webScrape = new WebScrape();
-            classStudyList.get(position).setClass_teacher(webScrape.getInfo("name", filter));
-            classStudyList.get(position).setClass_email(webScrape.getInfo("email", filter));
-            classStudyList.get(position).setClass_url(webScrape.getInfo("link", filter));
+            try {
+                classStudyList.get(position).setClass_teacher(webScrape.getInfo("name", filter));
+                classStudyList.get(position).setClass_email(webScrape.getInfo("email", filter));
+                classStudyList.get(position).setClass_url(webScrape.getInfo("link", filter));
+            } catch (Exception ignored) {
+                //TODO implement something
+            }
         });
         thread.start();
         progressBar.setVisibility(ProgressBar.VISIBLE);

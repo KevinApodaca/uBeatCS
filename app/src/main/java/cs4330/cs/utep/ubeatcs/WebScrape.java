@@ -1,8 +1,6 @@
 package cs4330.cs.utep.ubeatcs;
 
 
-import android.util.Log;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -33,21 +31,20 @@ public class WebScrape {
             temp1 = docString.split("\n");
             for (String s : temp1) {
                 if (tag.equals("email")) {
-                    Log.e("Email", s);
+//                    Log.e("Email", s);
                     temp2 = s.split("mailto:");
                     temp3 = temp2[1].split(">");
                     temp4 = temp3[0].substring(0, (temp3[0].length() - 1));
                     temp3[0] = temp4;
                 } else if (tag.equals("name")) {
-                    Log.e("Name", s);
+//                    Log.e("Name", s);
                     temp2 = s.split(">");
                     temp3 = temp2[1].split("<");
                 } else {
-                    Log.e("Link", s);
+//                    Log.e("Link", s);
                     temp2 = s.split("<a href=\"");
                     temp3 = temp2[1].split("\">");
                 }
-                Log.e("Variables123", temp3[0]);
                 names.add(temp3[0]);
             }
         } catch (IOException e) {

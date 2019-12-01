@@ -46,8 +46,6 @@ public class ListAdapter extends ArrayAdapter<StudyClass> {
 
         TextView teacherNameView = row.findViewById(R.id.classTeacher);
         teacherNameView.setText(String.format("CRN: %s - %s", currentClass.getClass_crn(), currentClass.getClass_teacher()));
-
-        Log.e("Variables", currentClass.getClass_crn() + ":" + currentClass.getClass_teacher() + ":" + currentClass.getClass_email());
         TextView emailView = row.findViewById(R.id.classEmail);
         emailView.setText(currentClass.getClass_email());
 
@@ -55,6 +53,100 @@ public class ListAdapter extends ArrayAdapter<StudyClass> {
         websiteView.setText(currentClass.getClass_url());
 
         ImageView imageView = row.findViewById(R.id.imageView);
+
+        String[] urlSplit;
+        String toCompare = "";
+        try {
+            urlSplit = currentClass.getClass_teacher().split(" ");
+            toCompare = urlSplit[1].toLowerCase();
+        } catch (NullPointerException ignored) {
+        }
+        if (toCompare.contains("aguirre")) {
+            imageView.setImageResource(R.drawable.diegoaguirre);
+        }
+
+        if (toCompare.contains("roach")) {
+            imageView.setImageResource(R.drawable.stevenroach);
+        }
+
+        if (toCompare.contains("acosta")) {
+            imageView.setImageResource(R.drawable.jaimeacosta);
+        }
+        if (toCompare.contains("chadderdon")) {
+            imageView.setImageResource(R.drawable.logalchadderdon);
+        }
+
+        if (toCompare.contains("mejia")) {
+            imageView.setImageResource(R.drawable.danielmejia);
+        }
+
+        if (toCompare.contains("tai")) {
+            imageView.setImageResource(R.drawable.elsetairamirez);
+        }
+
+        if (toCompare.contains("c")) {
+            imageView.setImageResource(R.drawable.juliourenda);
+        }
+
+        if (toCompare.contains("kiekintveld")) {
+            imageView.setImageResource(R.drawable.chriskiekintveld);
+        }
+
+        if (toCompare.contains("k.")) {
+            imageView.setImageResource(R.drawable.maryroy);
+        }
+
+        if (toCompare.contains("longpre")) {
+            imageView.setImageResource(R.drawable.luclongpre);
+        }
+
+        if (toCompare.contains("salamah")) {
+            imageView.setImageResource(R.drawable.salamahedit);
+        }
+
+        if (toCompare.contains("ceberio")) {
+            imageView.setImageResource(R.drawable.martineceberio);
+        }
+
+        if (toCompare.contains("cheon")) {
+            imageView.setImageResource(R.drawable.yoonsikcheon);
+        }
+
+        if (toCompare.contains("akbar")) {
+            imageView.setImageResource(R.drawable.monicaakbar);
+        }
+
+        if (toCompare.contains("badreddin")) {
+            imageView.setImageResource(R.drawable.badreddin);
+        }
+
+        if (toCompare.contains("freudenthal")) {
+            imageView.setImageResource(R.drawable.ericfreudenthal);
+        }
+
+        if (toCompare.contains("deblasio")) {
+            imageView.setImageResource(R.drawable.danieldeblasio);
+        }
+
+        if (toCompare.contains("fuentes")) {
+            imageView.setImageResource(R.drawable.olacfuentes);
+        }
+
+        if (toCompare.contains("shahriar")) {
+            imageView.setImageResource(R.drawable.mahmudhossain);
+        }
+
+        if (toCompare.contains("kreinovich")) {
+            imageView.setImageResource(R.drawable.vladlik);
+        }
+
+        if (toCompare.contains("villanueva")) {
+            imageView.setImageResource(R.drawable.nataliavillanueva);
+        }
+
+        if (toCompare.contains("nigel")) {
+            imageView.setImageResource(R.drawable.nigelward);
+        }
         return row;
 
 

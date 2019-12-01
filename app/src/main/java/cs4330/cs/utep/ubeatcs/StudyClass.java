@@ -106,6 +106,9 @@ class StudyClass {
      * @return the url of the webpage
      */
     String getClass_url() {
+        if (class_url == null || class_url.equals("")) {
+            setClass_url("https://www.utep.edu/cs/people/index.html");
+        }
         return class_url;
     }
 
