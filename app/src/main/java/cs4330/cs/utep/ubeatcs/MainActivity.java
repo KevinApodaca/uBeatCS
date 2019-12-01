@@ -1,6 +1,7 @@
 package cs4330.cs.utep.ubeatcs;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -15,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.view.menu.MenuPopupHelper;
@@ -23,7 +25,13 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,10 +48,15 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
     private ListView listView;
     private SwipeRefreshLayout swipeRefreshLayout;
 
+    private Uri filePath;
+    private StorageReference storageReference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        storageReference = FirebaseStorage.getInstance().getReference();
 
         StudyClass studyClass = new StudyClass();
         studyClass.getYoutubePlaylist().add("https://www.youtube.com/watch?v=dFlPARW5IX8");
@@ -286,5 +299,49 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.Liste
         classStudyList.get(index).setClass_name(name);
         classStudyList.get(index).setClass_crn(crn);
         renewList();
+    }
+
+    /**
+     * Method to upload user-selected picture to database.
+     */
+    private void uploadFile(){
+        if (filePath != null) {
+
+            final ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog.setTitle("Uploading file...");
+            progressDialog.show();
+
+            StorageReference riversRef = storageReference.child("images/userDoc1.jpg");
+
+            riversRef.putFile(filePath)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                            // Get a URL to the uploaded content
+//                            Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                            progressDialog.dismiss();
+                            Toast.makeText(getApplicationContext(),"File Uploaded", Toast.LENGTH_LONG).show();
+
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            progressDialog.dismiss();
+                            Toast.makeText(getApplicationContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>(){
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot){
+                            double progress = (100 * taskSnapshot.getBytesTransferred())/taskSnapshot.getTotalByteCount();
+                            progressDialog.setMessage(((int) progress) + "% Uploaded...");
+                        }
+                    });
+            ;
+        }
+        else{
+            //display error toast
+        }
     }
 }
