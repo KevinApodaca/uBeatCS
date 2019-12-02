@@ -27,4 +27,5 @@ This project was used as the semester project for the University of Texas at El 
 
 * Download files - the user can download the resource files to their device locally.
 * Class webpage - the user can view the webpage for that specific class.  
+* Upload files - the user can select a file (image or pdf) to the database in order to share with other users.
 

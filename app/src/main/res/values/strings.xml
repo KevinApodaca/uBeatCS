@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">uBeatCs</string>
+    <string name="app_name">uBeatCS - a mobile app</string>
     <string name="refresh">Refresh</string>
     <string name="add">Add</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
@@ -15,7 +15,7 @@
     <string name="tab_text_2">Homepage</string>
     <string name="title_activity_detailed_view">DetailedView</string>
     <string name="homepage_url">Homepage URL</string>
-    <string name="teacher_name">Teacher Name</string>
+    <string name="teacher_name">Professor Name</string>
     <string name="update">Update</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
