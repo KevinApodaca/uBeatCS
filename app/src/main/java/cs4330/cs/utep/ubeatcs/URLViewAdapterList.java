@@ -13,6 +13,8 @@ import androidx.annotation.NonNull;
 import java.util.List;
 
 /**
+ * List adapter that will display a list of Youtube video that the user has saved or is saved.
+ *
  * @author Isaias Leos
  */
 public class URLViewAdapterList extends ArrayAdapter<String> {
@@ -25,7 +27,7 @@ public class URLViewAdapterList extends ArrayAdapter<String> {
     }
 
     /**
-     * Method will be used to set the email of the instructor depending on which teacher has been selected by the user.
+     * Set the information within the listview, from setting the picture to the youtube URL link.
      *
      * @param position    - current position in the list.
      * @param convertView - the converted view.
@@ -43,6 +45,9 @@ public class URLViewAdapterList extends ArrayAdapter<String> {
         return row;
     }
 
+    /**
+     * Interface that will allow the user to delete or play a video
+     */
     public interface Listener {
 
         void delete(int index);

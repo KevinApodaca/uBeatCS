@@ -25,6 +25,12 @@ public class AddNewVideo extends AppCompatDialogFragment {
     private EditText youtubeURL;
     private AddNewVideoListener listener;
 
+    /**
+     * Create a dialog to add a youtube URL to the application.
+     *
+     * @param saveInstanceState
+     * @return
+     */
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle saveInstanceState) {

@@ -17,6 +17,13 @@ public class WebScrape {
     WebScrape() {
     }
 
+    /**
+     * Obtain the professor's information according to the UTEP website.
+     *
+     * @param tag
+     * @param filter
+     * @return
+     */
     public String getInfo(String tag, String filter) {
         List<String> names = new ArrayList<>();
         String[] temp1;
@@ -30,18 +37,16 @@ public class WebScrape {
             docString = String.valueOf(doc.getElementsByClass(tag));
             temp1 = docString.split("\n");
             for (String s : temp1) {
+                //Obtain the email
                 if (tag.equals("email")) {
-//                    Log.e("Email", s);
                     temp2 = s.split("mailto:");
                     temp3 = temp2[1].split(">");
                     temp4 = temp3[0].substring(0, (temp3[0].length() - 1));
                     temp3[0] = temp4;
-                } else if (tag.equals("name")) {
-//                    Log.e("Name", s);
+                } else if (tag.equals("name")) {//Obtain the name of the professor
                     temp2 = s.split(">");
                     temp3 = temp2[1].split("<");
-                } else {
-//                    Log.e("Link", s);
+                } else {//Obtain the website
                     temp2 = s.split("<a href=\"");
                     temp3 = temp2[1].split("\">");
                 }
@@ -51,6 +56,7 @@ public class WebScrape {
             e.printStackTrace();
         }
 
+        //CRN Filter
         switch (filter) {
             case "18673":
             case "18674":

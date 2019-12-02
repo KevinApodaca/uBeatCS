@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 /**
- * A placeholder fragment containing a simple view.
+ * A placeholder fragment containing a simple webview.
  *
  * @author Isaias Leos
  */
@@ -27,6 +27,11 @@ public class PlaceholderFragmentWebsite extends Fragment {
         return fragment;
     }
 
+    /**
+     * Obtain information from the SectionPagerAdapter to correctly display a website, if any.
+     *
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         if (getArguments() != null) {
@@ -42,6 +47,14 @@ public class PlaceholderFragmentWebsite extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+    /**
+     * Display the current class homepage within the TabbedView.
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     public View onCreateView(

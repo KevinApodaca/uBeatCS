@@ -1,7 +1,6 @@
 package cs4330.cs.utep.ubeatcs;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +25,8 @@ public class ListAdapter extends ArrayAdapter<StudyClass> {
     }
 
     /**
-     * Method will be used to set the email of the instructor depending on which teacher has been selected by the user.
+     * Method will be used to set the email, class information, and picture of the instructor
+     * depending on which teacher has been selected by the user.
      *
      * @param position    - current position in the list.
      * @param convertView - the converted view.
@@ -152,6 +152,9 @@ public class ListAdapter extends ArrayAdapter<StudyClass> {
 
     }
 
+    /**
+     * Interface to add or delete a class from the main activity.
+     */
     public interface Listener {
 
         void delete(int index);

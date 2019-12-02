@@ -139,18 +139,38 @@ class StudyClass {
         this.class_email = class_email;
     }
 
+    /**
+     * Obtain the youtube list that the user saved within the class information.
+     *
+     * @return
+     */
     List<String> getYoutubePlaylist() {
         return youtubePlaylist;
     }
 
+    /**
+     * Set the youtube list.
+     *
+     * @param youtubePlaylist
+     */
     void setYoutubePlaylist(List<String> youtubePlaylist) {
         this.youtubePlaylist = youtubePlaylist;
     }
 
+    /**
+     * Obtain the class unique CRN.
+     *
+     * @return
+     */
     String getClass_crn() {
         return class_crn;
     }
 
+    /**
+     * Set the class CRN.
+     *
+     * @param class_crn
+     */
     void setClass_crn(String class_crn) {
         this.class_crn = class_crn;
     }

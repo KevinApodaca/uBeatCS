@@ -23,12 +23,29 @@ public class DetailedListAdapter extends ArrayAdapter<String> {
     private final List<String> contentList;
     private StudyClass globalStudyClass;
 
+    /**
+     * Constructor that requires the current context, list of content that the user will use to
+     * save information and the information about the class.
+     *
+     * @param ctx
+     * @param content
+     * @param globalStudyClass
+     */
     DetailedListAdapter(Context ctx, List<String> content, StudyClass globalStudyClass) {
         super(ctx, -1, content);
         this.contentList = content;
         this.globalStudyClass = globalStudyClass;
     }
 
+    /**
+     * List Adapter to populate a XML file that you will view within the class the user has clicked.
+     * Showing study material that will saved by the user for the class.
+     *
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return
+     */
     @NonNull
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         View row = convertView != null ? convertView

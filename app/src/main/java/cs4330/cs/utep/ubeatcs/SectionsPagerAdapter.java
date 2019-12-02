@@ -12,7 +12,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 
 /**
- * A [FragmentPagerAdapter] that returns a fragment corresponding to
+ * A FragmentPagerAdapter that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  *
  * @author Isaias Leos
@@ -30,6 +30,13 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         globalStudyClass = currentClass;
     }
 
+    /**
+     * Create a fragment that will return each tab will do, from the simple study material
+     * fragment to the webview fragment within the tabbed view.
+     *
+     * @param position
+     * @return
+     */
     @Override
     public Fragment getItem(int position) {
         Bundle bundle = new Bundle();

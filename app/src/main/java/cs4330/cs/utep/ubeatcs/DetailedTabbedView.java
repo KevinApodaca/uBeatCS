@@ -25,6 +25,12 @@ public class DetailedTabbedView extends AppCompatActivity {
     StudyClass sendClass;
     private FloatingActionButton retrievePicture;
 
+    /**
+     * TabbedView that will show two tabs, one being the user generated content and the next
+     * being a homepage.
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +79,9 @@ public class DetailedTabbedView extends AppCompatActivity {
         //TODO send image to model-layer or activity that is going to save the image to display in the imageView
     }
 
+    /**
+     * Display a dialog that will allow the user to send an email using an application.
+     */
     private void sendEmailDialog() {
         EmailDialogActivity dialog = new EmailDialogActivity();
         Bundle bundle = new Bundle();

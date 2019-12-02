@@ -20,11 +20,21 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Isaias Leos, Google, Youtube
+ */
 public class YoutubeViewList extends AppCompatActivity implements URLViewAdapterList.Listener, AddNewVideo.AddNewVideoListener {
 
     List<String> youtubeList = null;
     ListView youtubeListView;
 
+
+    /**
+     * ListView that will show available youtube video that have been added to the application.
+     * Implement a FAB that will allow the user to add a video.
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,12 +108,22 @@ public class YoutubeViewList extends AppCompatActivity implements URLViewAdapter
         menuHelper.show();
     }
 
+    /**
+     * Delete a youtube video.
+     *
+     * @param index
+     */
     @Override
     public void delete(int index) {
         youtubeList.remove(index);
         renewList();
     }
 
+    /**
+     * Play a youtube video.
+     *
+     * @param index
+     */
     @Override
     public void player(int index) {
         Intent youtubeIntent = new Intent(this, YoutubeViewer.class);
@@ -111,6 +131,11 @@ public class YoutubeViewList extends AppCompatActivity implements URLViewAdapter
         startActivity(youtubeIntent);
     }
 
+    /**
+     * Add a youtube URL to the listview.
+     *
+     * @param url
+     */
     @Override
     public void add(String url) {
         youtubeList.add(url);

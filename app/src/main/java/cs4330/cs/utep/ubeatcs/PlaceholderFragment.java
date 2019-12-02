@@ -36,6 +36,11 @@ public class PlaceholderFragment extends Fragment implements DetailedListAdapter
         return fragment;
     }
 
+    /**
+     * Initialize the fragment that will contain study material list that the user will populate.
+     *
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +63,14 @@ public class PlaceholderFragment extends Fragment implements DetailedListAdapter
         subjectList.add("Homework");
     }
 
+    /**
+     * Initialize the listview to display the study material and add an action to said study material.
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_detailed_view, container, false);
@@ -67,6 +80,11 @@ public class PlaceholderFragment extends Fragment implements DetailedListAdapter
         return root;
     }
 
+    /**
+     * Actions that each study material list item will do.
+     *
+     * @param position
+     */
     @Override
     public void doAction(int position) {
         switch (position) {
@@ -93,6 +111,11 @@ public class PlaceholderFragment extends Fragment implements DetailedListAdapter
         }
     }
 
+    /**
+     * Send URL to a custom chrome tab view.
+     *
+     * @param url
+     */
     private void toBrowser(String url) {
         CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
         builder.addDefaultShareMenuItem();

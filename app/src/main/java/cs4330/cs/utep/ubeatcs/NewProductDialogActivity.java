@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 import java.util.Objects;
 
 /**
- * This class is used to display a dialog window that allows the user to edit a product.
+ * This class is used to display a dialog window that allows the user to add a product.
  *
  * @author Isaias Leos
  */

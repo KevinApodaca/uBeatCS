@@ -3,7 +3,6 @@ package cs4330.cs.utep.ubeatcs;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.youtube.player.YouTubeBaseActivity;
@@ -21,6 +20,12 @@ public class YoutubeViewer extends YouTubeBaseActivity implements YouTubePlayer.
     private String youtubeID = "";
     private YouTubePlayerView youTubeView;
 
+    /**
+     * Initialize the youtubeView within the viewer_youtube.xml given by the youtube API.
+     * Also obtain the youtubeID from the youtube view list.
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +35,13 @@ public class YoutubeViewer extends YouTubeBaseActivity implements YouTubePlayer.
         youTubeView.initialize(Config.YOUTUBE_API_KEY, this);
     }
 
+    /**
+     * Plays the youtube video after initialization.
+     *
+     * @param provider
+     * @param player
+     * @param wasRestored
+     */
     @Override
     public void onInitializationSuccess(Provider provider, YouTubePlayer player, boolean wasRestored) {
         if (!wasRestored) {
@@ -43,6 +55,12 @@ public class YoutubeViewer extends YouTubeBaseActivity implements YouTubePlayer.
         }
     }
 
+    /**
+     * Failure to play the video due to not initialing correctly.
+     *
+     * @param provider
+     * @param errorReason
+     */
     @Override
     public void onInitializationFailure(Provider provider, YouTubeInitializationResult errorReason) {
         if (errorReason.isUserRecoverableError()) {
@@ -53,6 +71,12 @@ public class YoutubeViewer extends YouTubeBaseActivity implements YouTubePlayer.
         }
     }
 
+    /**
+     * Obtain intent data
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == RECOVERY_REQUEST) {
@@ -60,10 +84,18 @@ public class YoutubeViewer extends YouTubeBaseActivity implements YouTubePlayer.
         }
     }
 
+    /**
+     * Get youtube player provider.
+     *
+     * @return
+     */
     protected Provider getYouTubePlayerProvider() {
         return youTubeView;
     }
 
+    /**
+     * Youtube API Key.
+     */
     public final class Config {
         static final String YOUTUBE_API_KEY = "AIzaSyAoXzjItmyCNqDipAOGjqGRuw5u9nZh_Q8";
 

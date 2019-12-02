@@ -27,7 +27,7 @@ public class EditProductDialogActivity extends AppCompatDialogFragment {
     private EditProductDialogListener listener;
 
     /**
-     * Creates a custom Dialog Window.
+     * Creates a custom Dialog Window that will allow the user to edit a class.
      *
      * @param saveInstanceState last instance saved
      * @return instance to be displayed by the activity

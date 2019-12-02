@@ -48,6 +48,9 @@ public class PDFViewer extends AppCompatActivity implements OnPageChangeListener
 
     String pdfFileName;
 
+    /**
+     * Allow a user to pick a PDF file using the built-in android file pick system and return it to the application.
+     */
     void pickFile() {
         int permissionCheck = ContextCompat.checkSelfPermission(this,
                 READ_EXTERNAL_STORAGE);
@@ -63,6 +66,9 @@ public class PDFViewer extends AppCompatActivity implements OnPageChangeListener
         launchPicker();
     }
 
+    /**
+     * Launches the activity that will pick the PDF file.
+     */
     void launchPicker() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("application/pdf");
@@ -73,6 +79,9 @@ public class PDFViewer extends AppCompatActivity implements OnPageChangeListener
         }
     }
 
+    /**
+     * Code executed after the PDF file is pick-up by the system.
+     */
     void afterViews() {
         pdfView.setBackgroundColor(Color.LTGRAY);
         if (uri != null) {
@@ -83,6 +92,11 @@ public class PDFViewer extends AppCompatActivity implements OnPageChangeListener
         setTitle(pdfFileName);
     }
 
+    /**
+     * Display a PDF from an asset using the filename.
+     *
+     * @param assetFileName
+     */
     private void displayFromAsset(String assetFileName) {
         pdfFileName = assetFileName;
         pdfView.fromAsset(SAMPLE_FILE)
@@ -97,6 +111,11 @@ public class PDFViewer extends AppCompatActivity implements OnPageChangeListener
                 .load();
     }
 
+    /**
+     * Display a PDF from an asset using an URI.
+     *
+     * @param uri
+     */
     private void displayFromUri(Uri uri) {
         pdfFileName = getFileName(uri);
 
@@ -111,19 +130,24 @@ public class PDFViewer extends AppCompatActivity implements OnPageChangeListener
                 .load();
     }
 
-    public void onResult(int resultCode, Intent intent) {
-        if (resultCode == RESULT_OK) {
-            uri = intent.getData();
-            displayFromUri(uri);
-        }
-    }
-
+    /**
+     * When page changes the information, like title or page number changes.
+     *
+     * @param page
+     * @param pageCount
+     */
     @Override
     public void onPageChanged(int page, int pageCount) {
         pageNumber = page;
         setTitle(String.format("%s %s / %s", pdfFileName, page + 1, pageCount));
     }
 
+    /**
+     * Obtain file name using URI.
+     *
+     * @param uri
+     * @return
+     */
     public String getFileName(Uri uri) {
         String result = null;
         if (Objects.equals(uri.getScheme(), "content")) {
@@ -139,6 +163,11 @@ public class PDFViewer extends AppCompatActivity implements OnPageChangeListener
         return result;
     }
 
+    /**
+     * PDF Finished loading correctly.
+     *
+     * @param nbPages
+     */
     @Override
     public void loadComplete(int nbPages) {
         PdfDocument.Meta meta = pdfView.getDocumentMeta();
@@ -161,8 +190,15 @@ public class PDFViewer extends AppCompatActivity implements OnPageChangeListener
         pdfView = findViewById(R.id.pdfView);
         displayFromAsset(SAMPLE_FILE);
         pdfView.loadPages();
+        afterViews();
     }
 
+    /**
+     * Display Bookmarks set within the PDF file.
+     *
+     * @param tree
+     * @param sep
+     */
     public void printBookmarksTree(List<PdfDocument.Bookmark> tree, String sep) {
         for (PdfDocument.Bookmark b : tree) {
 

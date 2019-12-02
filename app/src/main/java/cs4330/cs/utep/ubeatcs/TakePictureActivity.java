@@ -21,7 +21,9 @@ import java.util.Date;
 
 
 /**
- * @author Isaias Leos
+ * Take a picture using the default camera and send it to the application to display it.
+ *
+ * @author Isaias Leos, Google API Documents
  */
 public class TakePictureActivity extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -34,6 +36,12 @@ public class TakePictureActivity extends AppCompatActivity {
         }
     };
 
+    /**
+     * Method that will execute when opening the activity.
+     * Initialize the button and view that will allow the activity to send back a photo.
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +54,9 @@ public class TakePictureActivity extends AppCompatActivity {
         takePictureImageView = findViewById(R.id.picture);
     }
 
+    /**
+     * Dispatch the intent that will allow the application to take a picture.
+     */
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
@@ -64,6 +75,13 @@ public class TakePictureActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Set the image within the imageview within the TakePictureActivity XML.
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
@@ -72,6 +90,7 @@ public class TakePictureActivity extends AppCompatActivity {
                 takePictureImageView.setImageURI(Uri.fromFile(imgFile));
             }
         }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     /**
