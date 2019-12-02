@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">uBeatCS - a mobile app</string>
+    <string name="app_name">uBeatCS</string>
     <string name="refresh">Refresh</string>
     <string name="add">Add</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
