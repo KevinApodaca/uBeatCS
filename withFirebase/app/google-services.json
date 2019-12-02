@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "857033088498",
+    "firebase_url": "https://ubeatcs.firebaseio.com",
+    "project_id": "ubeatcs",
+    "storage_bucket": "ubeatcs.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:857033088498:android:724041881520e010445f6b",
+        "android_client_info": {
+          "package_name": "cs4330.cs.utep.ubeatcs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "857033088498-8hjht3ivg91oso1c7i4u19jlq2dv1kra.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cs4330.cs.utep.ubeatcs",
+            "certificate_hash": "0afd4d9e4a822d2bdefb969ec67f7662b65fafa4"
+          }
+        },
+        {
+          "client_id": "857033088498-b2ujd09uh9pm8sp4bsbldp0t7ttm20ua.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvTxB0ZbPUbSRFsQwySiwznYPnzRsTPGM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "857033088498-b2ujd09uh9pm8sp4bsbldp0t7ttm20ua.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
