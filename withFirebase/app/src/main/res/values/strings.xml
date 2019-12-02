@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">uBeatCS - a mobile app</string>
+    <string name="refresh">Refresh</string>
+    <string name="add">Add</string>
+    <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="classteacher_placeholder">CS3350 - Kreinovich</string>
+    <string name="classname_placeholder">Automata/ Computability</string>
+    <string name="class_image">Class Image</string>
+    <string name="placeholder_text">Placeholder Text</string>
+    <string name="settings">Settings</string>
+    <string name="image_description">Image Description</string>
+    <string name="title_activity_tabbed">TabbedActivity</string>
+    <string name="tab_text_1">Study Material</string>
+    <string name="tab_text_2">Homepage</string>
+    <string name="title_activity_detailed_view">DetailedView</string>
+    <string name="homepage_url">Homepage URL</string>
+    <string name="teacher_name">Professor Name</string>
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+    <string name="class_number">Class Number</string>
+    <string name="class_name">Class Name</string>
+    <string name="take_picture">Take Picture</string>
+    <string name="image_note">Image Note</string>
+    <string name="save">Save</string>
+    <string name="capture">Capture</string>
+    <string name="captured_image">Captured Image</string>
+    <string name="example_content">Example Content</string>
+    <string name="player_error">Error initializing YouTube player: %s</string>
+    <string name="seek_to">Jump To</string>
+    <string name="seek_to_hint">Seconds</string>
+</resources>
